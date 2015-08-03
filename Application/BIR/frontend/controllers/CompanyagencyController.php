@@ -1,18 +1,18 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 
 use Yii;
-use common\models\Document;
-use common\models\DocumentSearch;
+use common\models\Companyagency;
+use common\models\CompanyagencySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DocumentController implements the CRUD actions for Document model.
+ * CompanyagencyController implements the CRUD actions for Companyagency model.
  */
-class DocumentController extends Controller
+class CompanyagencyController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class DocumentController extends Controller
     }
 
     /**
-     * Lists all Document models.
+     * Lists all Companyagency models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new DocumentSearch();
+        $searchModel = new CompanyagencySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class DocumentController extends Controller
     }
 
     /**
-     * Displays a single Document model.
+     * Displays a single Companyagency model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +54,13 @@ class DocumentController extends Controller
     }
 
     /**
-     * Creates a new Document model.
+     * Creates a new Companyagency model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Document();
+        $model = new Companyagency();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,7 +72,7 @@ class DocumentController extends Controller
     }
 
     /**
-     * Updates an existing Document model.
+     * Updates an existing Companyagency model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class DocumentController extends Controller
     }
 
     /**
-     * Deletes an existing Document model.
+     * Deletes an existing Companyagency model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class DocumentController extends Controller
     }
 
     /**
-     * Finds the Document model based on its primary key value.
+     * Finds the Companyagency model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Document the loaded model
+     * @return Companyagency the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Document::findOne($id)) !== null) {
+        if (($model = Companyagency::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

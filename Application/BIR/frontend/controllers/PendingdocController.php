@@ -1,18 +1,18 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 
 use Yii;
-use common\models\Agencycperson;
-use common\models\AgencycpersonSearch;
+use common\models\Pendingdoc;
+use common\models\PendingdocSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AgencycpersonController implements the CRUD actions for Agencycperson model.
+ * PendingdocController implements the CRUD actions for Pendingdoc model.
  */
-class AgencycpersonController extends Controller
+class PendingdocController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class AgencycpersonController extends Controller
     }
 
     /**
-     * Lists all Agencycperson models.
+     * Lists all Pendingdoc models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AgencycpersonSearch();
+        $searchModel = new PendingdocSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class AgencycpersonController extends Controller
     }
 
     /**
-     * Displays a single Agencycperson model.
+     * Displays a single Pendingdoc model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +54,13 @@ class AgencycpersonController extends Controller
     }
 
     /**
-     * Creates a new Agencycperson model.
+     * Creates a new Pendingdoc model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Agencycperson();
+        $model = new Pendingdoc();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,7 +72,7 @@ class AgencycpersonController extends Controller
     }
 
     /**
-     * Updates an existing Agencycperson model.
+     * Updates an existing Pendingdoc model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class AgencycpersonController extends Controller
     }
 
     /**
-     * Deletes an existing Agencycperson model.
+     * Deletes an existing Pendingdoc model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class AgencycpersonController extends Controller
     }
 
     /**
-     * Finds the Agencycperson model based on its primary key value.
+     * Finds the Pendingdoc model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Agencycperson the loaded model
+     * @return Pendingdoc the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Agencycperson::findOne($id)) !== null) {
+        if (($model = Pendingdoc::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

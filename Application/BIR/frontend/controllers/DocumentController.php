@@ -1,18 +1,18 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 
 use Yii;
-use common\models\Pendingdoc;
-use common\models\PendingdocSearch;
+use common\models\Document;
+use common\models\DocumentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PendingdocController implements the CRUD actions for Pendingdoc model.
+ * DocumentController implements the CRUD actions for Document model.
  */
-class PendingdocController extends Controller
+class DocumentController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class PendingdocController extends Controller
     }
 
     /**
-     * Lists all Pendingdoc models.
+     * Lists all Document models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PendingdocSearch();
+        $searchModel = new DocumentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class PendingdocController extends Controller
     }
 
     /**
-     * Displays a single Pendingdoc model.
+     * Displays a single Document model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +54,13 @@ class PendingdocController extends Controller
     }
 
     /**
-     * Creates a new Pendingdoc model.
+     * Creates a new Document model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pendingdoc();
+        $model = new Document();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,7 +72,7 @@ class PendingdocController extends Controller
     }
 
     /**
-     * Updates an existing Pendingdoc model.
+     * Updates an existing Document model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class PendingdocController extends Controller
     }
 
     /**
-     * Deletes an existing Pendingdoc model.
+     * Deletes an existing Document model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class PendingdocController extends Controller
     }
 
     /**
-     * Finds the Pendingdoc model based on its primary key value.
+     * Finds the Document model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pendingdoc the loaded model
+     * @return Document the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pendingdoc::findOne($id)) !== null) {
+        if (($model = Document::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

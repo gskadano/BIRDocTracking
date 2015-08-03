@@ -1,18 +1,18 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 
 use Yii;
-use common\models\Companyagency;
-use common\models\CompanyagencySearch;
+use common\models\Docworkflow;
+use common\models\DocworkflowSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CompanyagencyController implements the CRUD actions for Companyagency model.
+ * DocworkflowController implements the CRUD actions for Docworkflow model.
  */
-class CompanyagencyController extends Controller
+class DocworkflowController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class CompanyagencyController extends Controller
     }
 
     /**
-     * Lists all Companyagency models.
+     * Lists all Docworkflow models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CompanyagencySearch();
+        $searchModel = new DocworkflowSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class CompanyagencyController extends Controller
     }
 
     /**
-     * Displays a single Companyagency model.
+     * Displays a single Docworkflow model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +54,13 @@ class CompanyagencyController extends Controller
     }
 
     /**
-     * Creates a new Companyagency model.
+     * Creates a new Docworkflow model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Companyagency();
+        $model = new Docworkflow();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,7 +72,7 @@ class CompanyagencyController extends Controller
     }
 
     /**
-     * Updates an existing Companyagency model.
+     * Updates an existing Docworkflow model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class CompanyagencyController extends Controller
     }
 
     /**
-     * Deletes an existing Companyagency model.
+     * Deletes an existing Docworkflow model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class CompanyagencyController extends Controller
     }
 
     /**
-     * Finds the Companyagency model based on its primary key value.
+     * Finds the Docworkflow model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Companyagency the loaded model
+     * @return Docworkflow the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Companyagency::findOne($id)) !== null) {
+        if (($model = Docworkflow::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
