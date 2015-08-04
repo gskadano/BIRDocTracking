@@ -12,9 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'position_id')->textInput() ?>
+   
 
-    <?= $form->field($model, 'section_id')->textInput() ?>
+	<?= $form->field($model, 'position_id')->dropDownList(
+       // ArrayHelper::map(DocumentPriority::find()->all(),'id', 'document_priority_name'),
+        ['prompt'=>'Position']
+    ) ?>
+	
+	<?= $form->field($model, 'section_id')->dropDownList(
+       // ArrayHelper::map(DocumentPriority::find()->all(),'id', 'document_priority_name'),
+        ['prompt'=>'Section']
+    ) ?>
+	
+    
 
     <?= $form->field($model, 'userFName')->textInput(['maxlength' => true]) ?>
 
