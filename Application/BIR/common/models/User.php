@@ -21,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  */
-class User extends ActiveRecord implements IdentityInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -32,17 +32,18 @@ class User extends ActiveRecord implements IdentityInterface
     public static function tableName()
     {
         return '{{%user}}';
+		//return 'user';
     }
 
     /**
      * @inheritdoc
-     */
+     
     public function behaviors()
     {
         return [
             TimestampBehavior::className(),
         ];
-    }
+    }*/
 
     /**
      * @inheritdoc
@@ -50,6 +51,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+			[['position_id', 'section_id', 'userFName', 'userLName', 'username', 'password_hash', 'email'], 'required'],//====
+            [['position_id', 'section_id', 'status'], 'integer'],//====
+            [['created_at', 'updated_at'], 'safe'],//====
+            [['userFName', 'userMName', 'userLName', 'username'], 'string', 'max' => 45],//====
+            [['password_hash', 'auth_key', 'email'], 'string', 'max' => 255],//====
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
@@ -184,6 +190,68 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+	//=========================================================================================
+	/**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'position_id' => 'Position ID',
+            'section_id' => 'Section ID',
+            'userFName' => 'User Fname',
+            'userMName' => 'User Mname',
+            'userLName' => 'User Lname',
+            'username' => 'Username',
+            'password_hash' => 'Password Hash',
+            'auth_key' => 'Auth Key',
+            'status' => 'Status',
+            'email' => 'Email',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocuments()
+    {
+        return $this->hasMany(Document::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocworkflows()
+    {
+        return $this->hasMany(Docworkflow::className(), ['user_receive' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocworkflows0()
+    {
+        return $this->hasMany(Docworkflow::className(), ['user_release' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosition()
+    {
+        return $this->hasOne(Position::className(), ['id' => 'position_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSection()
+    {
+        return $this->hasOne(Section::className(), ['id' => 'section_id']);
     }
 	
 	//===========Position list=============

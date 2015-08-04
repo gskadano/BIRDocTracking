@@ -3,7 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\User;
+//use backend\models\User;
+use common\models\User;//====
 use common\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -61,14 +62,41 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+		
+		//if ($model->validate()) {
+			if ($model->load(Yii::$app->request->post())) {
+				$model->username = $model->username;
+				$model->email = $model->email;
+				$model->setPassword($model->password_hash);
+				$model->generateAuthKey();
+				if($model->save()) {
+					return $this->redirect(['view', 'id' => $model->id]);
+				}
+				//if ($user = $model->signup()) {
+					//if (Yii::$app->getUser()->login($user)) {
+						//return $this->redirect(['view', 'id' => $model->id]);
+					//}
+				//}
+				//return $this->redirect(['view', 'id' => $model->id]);
+			/*$user = new UserSignup(['scenario' => 'create']);
+			if ($user->load(Yii::$app->request->post()))
+			{
+				$user->setPassword($user->password_hash);
+				$user->generateAuthKey();
+				
+				if ($user->save()) 
+				{
+					//$role->user_id = $user->getId();
+					//$role->save(); 
+					return $this->redirect(['view', 'id' => $model->id]);
+				}  
+				//return $this->redirect('index');  */    
+			} else {
+				return $this->render('create', [
+					'model' => $model,
+				]);
+			}
+		//}
     }
 
     /**
@@ -76,7 +104,7 @@ class UserController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
-     */
+     
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -88,6 +116,25 @@ class UserController extends Controller
                 'model' => $model,
             ]);
         }
+    }*/
+	public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+		
+		if ($model->validate()) {
+			if ($model->load(Yii::$app->request->post()) ) {
+				$model->setPassword($model->password_hash);
+				$model->generateAuthKey();
+				$model->updated_at = date('Y-m-d H:i:s');
+				if($model->save()){
+					return $this->redirect(['view', 'id' => $model->id]);
+				}
+		    }else {
+				return $this->render('update', [
+					'model' => $model,
+				]);
+			}
+		}
     }
 
     /**

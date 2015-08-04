@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+//use common\models\User;//==========
 
 /**
  * This is the model class for table "user".
@@ -43,7 +44,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['position_id', 'section_id', 'userFName', 'userLName', 'username', 'password_hash', 'status', 'email', 'updated_at'], 'required'],
+            [['position_id', 'section_id', 'userFName', 'userLName', 'username', 'password_hash', 'email'], 'required'],
             [['position_id', 'section_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['userFName', 'userMName', 'userLName', 'username'], 'string', 'max' => 45],
@@ -102,17 +103,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function getPosition()
     {
-        //return $this->hasOne(Position::className(), ['id' => 'position_id']);
-		$position = User::find()->where(['positionCode' => Position::positionCode])->all();
-		//$position = User::find()select('positionCode')->where(['positionCode' => Position::positionCode])->all();
-		//$sql = 'SELECT positionCode FROM position WHERE ';
-		//$model = User::findBySql($sql)->all(); 
-
-		$positionArray = array();
-		foreach ($position as $key => $position)
-			$positionArray["$user->id"] = $position->showName();
-
-		return $positionArray;
+        return $this->hasOne(Position::className(), ['id' => 'position_id']);
     }
 
     /**
@@ -123,19 +114,19 @@ class User extends \yii\db\ActiveRecord
         return $this->hasOne(Section::className(), ['id' => 'section_id']);
     }
 	
-	//===========Position list=============
-	/*public function getPosition()
-	{
-		//$position = User::find()->where(['positionCode' => Position::positionCode])->all();
-		//$position = User::find()select('positionCode')->where(['positionCode' => Position::positionCode])->all();
-		$sql = 'SELECT positionCode FROM position WHERE ';
-		$model = User::findBySql($sql)->all(); 
+	public function signup()
+    {
+        if ($this->validate()) {
+			$user = new UserSignup();
+            $user->username = $this->username;
+            $user->email = $this->email;
+            $user->setPassword($this->password);
+            $user->generateAuthKey();
+            if ($user->save()) {
+                return $user;
+            }
+        }
 
-		$positionArray = array();
-		foreach ($position as $key => $position)
-			$positionArray["$user->id"] = $position->showName();
-
-		return $positionArray;
-	} */
-	//=====================================
+        return null;
+    }
 }

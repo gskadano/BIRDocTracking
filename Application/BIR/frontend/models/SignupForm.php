@@ -34,14 +34,6 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
-			
-			//=====added==================
-			['position_id', 'required'],
-            ['position_id', 'string', 'min' => 6],
-			
-			['section_id', 'required'],
-            ['section_id', 'string', 'min' => 6],
-			//============================
         ];
     }
 
