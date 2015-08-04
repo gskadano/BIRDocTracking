@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'position_id')->textInput() ?>
-
-    <?= $form->field($model, 'section_id')->textInput() ?>
-
-    <?= $form->field($model, 'userFName')->textInput(['maxlength' => true]) ?>
+	<?= $form->field($model, 'position_id')->dropDownList(['Position A' => 'Static Position A', 'Position B' => 'Static Position B', 'Position C' => 'Static Position C']); ?>
+	
+	<?= $form->field($model, 'section_id')->dropDownList(['Section A' => 'Static Section A', 'Section B' => 'Static Section B', 'Section C' => 'Static Section C']); ?>
+    
+	<?= $form->field($model, 'userFName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'userMName')->textInput(['maxlength' => true]) ?>
 
@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+	<?= $form->field($model, 'status')->dropDownList(['0' => 'Inactive', '1' => 'Active', '2' => 'Dormant']); ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
