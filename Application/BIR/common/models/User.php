@@ -199,16 +199,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'position_id' => 'Position ID',
-            'section_id' => 'Section ID',
-            'userFName' => 'User Fname',
-            'userMName' => 'User Mname',
-            'userLName' => 'User Lname',
+            'position_id' => 'Position Name',
+            'section_id' => 'Section Name',
+            'userFName' => 'First Name',
+            'userMName' => 'Middle Name',
+            'userLName' => 'Last Name',
             'username' => 'Username',
             'password_hash' => 'Password Hash',
-            'auth_key' => 'Auth Key',
+            'auth_key' => 'Authentication Key',
             'status' => 'Status',
-            'email' => 'Email',
+            'email' => 'Email Address',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -252,6 +252,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getSection()
     {
         return $this->hasOne(Section::className(), ['id' => 'section_id']);
+    }
+	
+	public function getFullName()
+    {
+         return $this->userFName . ', ' . $this->userLName;
     }
 	
 	//===========Position list=============
