@@ -47,7 +47,7 @@ class Position extends \yii\db\ActiveRecord
             'id' => 'ID',
             'positionCode' => 'Position Code',
             'positionName' => 'Position Name',
-            'positionDesc' => 'Position Desc',
+            'positionDesc' => 'Position Description',
             'positionNotes' => 'Position Notes',
         ];
     }

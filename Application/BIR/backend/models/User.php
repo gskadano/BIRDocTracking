@@ -59,11 +59,11 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'position_id' => 'Position ID',
-            'section_id' => 'Section ID',
-            'userFName' => 'User First Name',
-            'userMName' => 'User Middle Name',
-            'userLName' => 'User Last Name',
+            'position_id' => 'Position',
+            'section_id' => 'Section',
+            'userFName' => 'First Name',
+            'userMName' => 'Middle Name',
+            'userLName' => 'Last Name',
             'username' => 'Username',
             'password_hash' => 'Password Hash',
             'auth_key' => 'Authentication Key',

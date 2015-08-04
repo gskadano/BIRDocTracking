@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
@@ -11,30 +12,18 @@ use yii\widgets\ActiveForm;
 <div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-<<<<<<< HEAD
-   
-
+	
 	<?= $form->field($model, 'position_id')->dropDownList(
-       // ArrayHelper::map(DocumentPriority::find()->all(),'id', 'document_priority_name'),
+        ArrayHelper::map(\common\models\Position::find()->all(),'id', 'positionName'),
         ['prompt'=>'Position']
     ) ?>
 	
 	<?= $form->field($model, 'section_id')->dropDownList(
-       // ArrayHelper::map(DocumentPriority::find()->all(),'id', 'document_priority_name'),
+       ArrayHelper::map(\common\models\Section::find()->all(),'id', 'sectionName'),
         ['prompt'=>'Section']
     ) ?>
 	
-    
-
-    <?= $form->field($model, 'userFName')->textInput(['maxlength' => true]) ?>
-=======
-	<?= $form->field($model, 'position_id')->dropDownList(['Position A' => 'Static Position A', 'Position B' => 'Static Position B', 'Position C' => 'Static Position C']); ?>
-	
-	<?= $form->field($model, 'section_id')->dropDownList(['Section A' => 'Static Section A', 'Section B' => 'Static Section B', 'Section C' => 'Static Section C']); ?>
-    
 	<?= $form->field($model, 'userFName')->textInput(['maxlength' => true]) ?>
->>>>>>> 2784c335019513d25ef3cc981e2ac3dc03797c85
 
     <?= $form->field($model, 'userMName')->textInput(['maxlength' => true]) ?>
 
