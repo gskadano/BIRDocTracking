@@ -129,4 +129,9 @@ class User extends \yii\db\ActiveRecord
 
         return null;
     }
+	
+	public function getFullName() 
+	{
+	    return $this->userLName . ', ' . $this->userFName;
+	}
 }
