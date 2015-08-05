@@ -3,6 +3,9 @@
 namespace backend\models;
 
 use Yii;
+use common\models\Position;
+use common\models\Section;
+
 //use common\models\User;//==========
 
 /**
