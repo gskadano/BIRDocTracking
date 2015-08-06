@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2015 at 09:33 PM
+-- Generation Time: Aug 06, 2015 at 03:23 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `categoryName` varchar(100) NOT NULL,
   `categoryDesc` varchar(255) DEFAULT NULL,
   `categoryCreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `categoryUpdate` datetime NOT NULL,
+  `categoryUpdate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
