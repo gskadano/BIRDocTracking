@@ -3,7 +3,6 @@
 namespace backend\models;
 
 use Yii;
-//use common\models\User;//==========
 
 /**
  * This is the model class for table "user".
@@ -28,7 +27,7 @@ use Yii;
  * @property Position $position
  * @property Section $section
  */
-class User extends \yii\db\ActiveRecord
+class UserAdmin extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -112,21 +111,5 @@ class User extends \yii\db\ActiveRecord
     public function getSection()
     {
         return $this->hasOne(Section::className(), ['id' => 'section_id']);
-    }
-	
-	public function signup()
-    {
-        if ($this->validate()) {
-			$user = new UserSignup();
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            $user->generateAuthKey();
-            if ($user->save()) {
-                return $user;
-            }
-        }
-
-        return null;
     }
 }

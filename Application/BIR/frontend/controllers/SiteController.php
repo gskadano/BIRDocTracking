@@ -13,6 +13,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+
 /**
  * Site controller
  */
@@ -115,23 +116,7 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-	/*
-	public function actionCreate()
-    {
-        $model = new User();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
-            }
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
-	*/
+	
     public function actionSignup()
     {
         $model = new SignupForm();
