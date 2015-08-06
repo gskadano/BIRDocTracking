@@ -3,7 +3,8 @@
 namespace backend\models;
 
 use Yii;
-
+use common\models\Position;
+use common\models\Section;
 /**
  * This is the model class for table "user".
  *
@@ -58,14 +59,15 @@ class UserAdmin extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'position_id' => 'Position ID',
-            'section_id' => 'Section ID',
-            'userFName' => 'User Fname',
-            'userMName' => 'User Mname',
-            'userLName' => 'User Lname',
+            
+            'position_id' => 'Position',
+            'section_id' => 'Section',
+            'userFName' => 'First Name',
+            'userMName' => 'Middle Name',
+            'userLName' => 'Last Name',
             'username' => 'Username',
             'password_hash' => 'Password Hash',
-            'auth_key' => 'Auth Key',
+            'auth_key' => 'Authentication Key',
             'status' => 'Status',
             'email' => 'Email',
             'created_at' => 'Created At',
