@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Agencycperson */
@@ -21,9 +22,13 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'telNumber')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+	
+	<?= $form->field($model, 'companyAgency_id')->dropDownList(
+        ArrayHelper::map(\common\models\companyagency::find()->all(),'id', 'companyAgencyCode'),
+        ['prompt'=>'Company Agency Code']
+    ) ?>
 
-    <?= $form->field($model, 'companyAgency_id')->textInput() ?>
-
+   
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
