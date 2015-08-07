@@ -8,6 +8,7 @@ use common\models\AgencycpersonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * AgencycpersonController implements the CRUD actions for Agencycperson model.
@@ -17,6 +18,17 @@ class AgencycpersonController extends Controller
     public function behaviors()
     {
         return [
+			'access'=>[
+				'class'=>AccessControl::classname(),
+				'only'=>['create','update','index'],
+				'rules'=>[
+					[
+						'allow'=>true,
+						'roles'=>['@']
+					],
+				]
+			],
+		
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
