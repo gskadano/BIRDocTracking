@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\position;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UserSearch */
@@ -19,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'position_id') ?>
 
-    <?= $form->field($model, 'section_id') ?>
+	<?= $form->field($model, 'section_id') ?>
 
     <?= $form->field($model, 'userFName') ?>
 

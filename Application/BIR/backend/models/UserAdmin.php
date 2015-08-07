@@ -3,9 +3,10 @@
 namespace backend\models;
 
 use Yii;
+use yii\web\IdentityInterface;
 use common\models\Position;
 use common\models\Section;
-use yii\web\IdentityInterface;
+
 /**
  * This is the model class for table "user".
  *
