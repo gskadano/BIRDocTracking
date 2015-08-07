@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2015 at 03:23 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: Aug 07, 2015 at 09:29 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -48,10 +48,19 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(100) NOT NULL,
   `categoryDesc` varchar(255) DEFAULT NULL,
-  `categoryCreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `categoryCreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `categoryUpdate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `categoryName`, `categoryDesc`, `categoryCreate`, `categoryUpdate`) VALUES
+(1, 'Category1', 'Test', '2015-08-07 07:21:54', NULL),
+(2, 'Category2', 'Test', '2015-08-07 07:22:14', NULL),
+(3, 'Category3', 'Test', '2015-08-07 07:22:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -67,7 +76,14 @@ CREATE TABLE IF NOT EXISTS `companyagency` (
   `companyAgencyCreate` datetime DEFAULT CURRENT_TIMESTAMP,
   `companyAgencyUpdate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `companyagency`
+--
+
+INSERT INTO `companyagency` (`id`, `companyAgencyCode`, `companyAgencyName`, `companyAgencyDesc`, `companyAgencyCreate`, `companyAgencyUpdate`) VALUES
+(1, 'dad', 'CHERRY', 'HAPPY SHALALA', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -80,7 +96,16 @@ CREATE TABLE IF NOT EXISTS `docstatus` (
   `docStatusName` varchar(45) NOT NULL,
   `docStatusDesc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `docstatus`
+--
+
+INSERT INTO `docstatus` (`id`, `docStatusName`, `docStatusDesc`) VALUES
+(1, 'Pending', 'Document is not yet confirmed'),
+(2, 'Finished', 'Document  is confirmed'),
+(3, 'On-going', 'Document is still on process');
 
 -- --------------------------------------------------------
 
@@ -209,14 +234,15 @@ CREATE TABLE IF NOT EXISTS `position` (
   `positionDesc` varchar(255) DEFAULT NULL,
   `positionNotes` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `position`
 --
 
 INSERT INTO `position` (`id`, `positionCode`, `positionName`, `positionDesc`, `positionNotes`) VALUES
-(1, 'RCV - MMS', 'Receiver', 'Receives document', 'Receiving department - MMS');
+(1, 'RCV - MMS', 'Receiver', 'Receives document', 'Receiving department - MMS'),
+(2, 'TEST-1', 'Test csbuaquina', 'Hello guys', 'haha');
 
 -- --------------------------------------------------------
 
@@ -231,7 +257,17 @@ CREATE TABLE IF NOT EXISTS `priority` (
   `priorityCreate` datetime DEFAULT CURRENT_TIMESTAMP,
   `priorityUpdate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `priority`
+--
+
+INSERT INTO `priority` (`id`, `priorityName`, `priorityDesc`, `priorityCreate`, `priorityUpdate`) VALUES
+(1, 'Urgent', 'Test', NULL, NULL),
+(2, 'High', 'Test', NULL, NULL),
+(3, 'Medium', 'Test', NULL, NULL),
+(4, 'Low', 'Test', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -281,7 +317,16 @@ CREATE TABLE IF NOT EXISTS `type` (
   `typeCreate` datetime DEFAULT CURRENT_TIMESTAMP,
   `typeUpdate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`id`, `typeName`, `typeDesc`, `typeCreate`, `typeUpdate`) VALUES
+(1, 'Type A', 'Test', NULL, NULL),
+(2, 'Type B', 'Test', NULL, NULL),
+(3, 'Type C', 'Test', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -306,7 +351,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `fk_user_position_idx` (`position_id`),
   KEY `fk_user_section1_idx` (`section_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `position_id`, `section_id`, `userFName`, `userMName`, `userLName`, `username`, `password_hash`, `auth_key`, `status`, `email`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, 'Cherry', 'S', 'Buaquina', 'csbuaquina', '$2y$13$A/Xx/MMc0ahBVmJAF0Pvcu6j6.qaXA12QoJqQWp1X/x.WsRegDKOa', 'CyKt9JHgHk06kPFI2CoU9jRIPu4I-VoF', 10, 'csbuaquina@yahoo.com', '2015-08-07 04:56:21', '0000-00-00 00:00:00');
 
 --
 -- Constraints for dumped tables

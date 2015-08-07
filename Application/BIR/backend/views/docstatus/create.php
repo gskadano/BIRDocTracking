@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Docstatus */
 
-$this->title = 'Create Docstatus';
+$this->title = 'Create Document Status';
 $this->params['breadcrumbs'][] = ['label' => 'Docstatuses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
