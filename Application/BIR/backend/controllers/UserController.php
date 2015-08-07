@@ -9,8 +9,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-use backend\models\signupForm;
-
 /**
  * UserController implements the CRUD actions for UserAdmin model.
  */
@@ -63,30 +61,25 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new UserAdmin();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+		
+        if ($model->load(Yii::$app->request->post())) {
+			$model->position_id = $model->position_id;
+			$model->section_id = $model->section_id;
+			$model->userFName = $model->userFName;
+			$model->userMName = $model->userMName;
+			$model->userLName = $model->userLName;
+            $model->username = $model->username;
+            $model->email = $model->email;
+            $model->setPassword($model->password_hash);
+            $model->generateAuthKey();
+			if($model->save()){
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
         } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
-    }
-	
-	public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
     }
 	
     /**
@@ -99,8 +92,13 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+			$model->setPassword($model->password_hash);
+            $model->generateAuthKey();
+			$model->updated_at = date('Y-m-d H:i:s');
+			if($model->save()){
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
         } else {
             return $this->render('update', [
                 'model' => $model,

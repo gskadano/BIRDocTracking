@@ -33,15 +33,9 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
-
-	<?= $form->field($model, 'status')->dropDownList(['0' => 'Inactive', '1' => 'Active', '2' => 'Dormant']); ?>
+	<?= $form->field($model, 'status')->dropDownList(['0' => 'Inactive', '10' => 'Active']); ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
