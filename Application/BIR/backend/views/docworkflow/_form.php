@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model common\models\Docworkflow */
 /* @var $form yii\widgets\ActiveForm */
@@ -16,7 +16,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user_receive')->textInput() ?>
 
-    <?= $form->field($model, 'docStatus_id')->textInput() ?>
+	<?= $form->field($model, 'docStatus_id')->dropDownList(
+       ArrayHelper::map(\common\models\Docstatus::find()->all(),'id', 'docStatusName'),
+        ['prompt'=>'Document Status']
+    ) ?>
 
     <?= $form->field($model, 'docWorkflowComment')->textInput(['maxlength' => true]) ?>
 

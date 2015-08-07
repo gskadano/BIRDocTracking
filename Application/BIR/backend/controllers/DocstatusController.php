@@ -8,6 +8,7 @@ use common\models\DocstatusSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * DocstatusController implements the CRUD actions for Docstatus model.
@@ -17,6 +18,17 @@ class DocstatusController extends Controller
     public function behaviors()
     {
         return [
+			'access'=>[
+				'class'=>AccessControl::classname(),
+				'only'=>['create','update','index'],
+				'rules'=>[
+					[
+						'allow'=>true,
+						'roles'=>['@']
+					],
+				]
+			],
+		
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

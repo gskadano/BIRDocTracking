@@ -31,7 +31,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categoryName', 'categoryUpdate'], 'required'],
+            [['categoryName'], 'required'],
             [['categoryCreate', 'categoryUpdate'], 'safe'],
             [['categoryName'], 'string', 'max' => 100],
             [['categoryDesc'], 'string', 'max' => 255]

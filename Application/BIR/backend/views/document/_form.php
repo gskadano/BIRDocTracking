@@ -2,15 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Document */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<?php
-use yii\helpers\ArrayHelper;
-use backend\models\Standard;
-?>
+
 
 
 <div class="document-form">
@@ -25,13 +23,21 @@ use backend\models\Standard;
 
     <?= $form->field($model, 'documentTargetDate')->textInput() ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
-
-    <?= $form->field($model, 'type_id')->textInput() ?>
-
     
+	
+	<?= $form->field($model, 'category_id')->dropDownList(
+        ArrayHelper::map(\common\models\Category::find()->all(),'id', 'categoryName'),
+        ['prompt'=>'Select Category']
+    ) ?>
+
+	
+	<?= $form->field($model, 'type_id')->dropDownList(
+        ArrayHelper::map(\common\models\Type::find()->all(),'id', 'typeName'),
+        ['prompt'=>'Select Type']
+    ) ?>
+	
 	<?= $form->field($model, 'priority_id')->dropDownList(
-       // ArrayHelper::map(DocumentPriority::find()->all(),'id', 'document_priority_name'),
+       ArrayHelper::map(\common\models\Priority::find()->all(),'id', 'priorityName'),
         ['prompt'=>'Select Priority']
     ) ?>
 	
