@@ -40,8 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'section.sectionName',
             ],
 
-			'section.sectionName',
-            'userFName',
+			'userFName',
             'userMName',
             // 'userLName',
             // 'username',
