@@ -114,4 +114,8 @@ class UserAdmin extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Section::className(), ['id' => 'section_id']);
     }
+	
+	public function getFullname(){
+		return $this->userLName . ', ' . $this->userFName;
+	}
 }
