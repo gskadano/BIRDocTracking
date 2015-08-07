@@ -3,22 +3,23 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
-
+//use common\models\position;
+//use common\models\section;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'User Admins';
+$this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-admin-index">
+<div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create User Admin', ['signup'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,7 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-			'position.positionName',
+			
+			[
+                'attribute'=>'position_id',
+                'value'=>'position.positionName',
+            ],
+			
+			[
+                'attribute'=>'section_id',
+                'value'=>'section.sectionName',
+            ],
+
 			'section.sectionName',
             'userFName',
             'userMName',
