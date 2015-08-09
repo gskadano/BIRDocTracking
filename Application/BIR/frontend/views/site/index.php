@@ -3,7 +3,7 @@
 $this->title = 'BIR - Document Workflow Tracking System';
 ?>
 
-<div class="site-index">
+<!--<div class="site-index">
 
     <div class="jumbotron">
         <h1></h1>
@@ -41,3 +41,4 @@ $this->title = 'BIR - Document Workflow Tracking System';
 
     </div>
 </div>
+-->

@@ -10,8 +10,9 @@ use frontend\widgets\Alert;
 /* @var $content string */
 
 AppAsset::register($this);
+
 ?>
-<?php $this->beginPage() ?>
+<?php $this->beginPage()  ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -20,6 +21,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+	
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -27,18 +29,18 @@ AppAsset::register($this);
         <?php
             NavBar::begin([
                 'brandLabel' => 'Bureau of Internal Revenue',
-                'brandUrl' => Yii::$app->homeUrl,
+				//'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
+                   'class' => 'navbar-inverse navbar-fixed-top',
+               ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                //['label' => 'Home', 'url' => ['/site/index']],
                 //['label' => 'About', 'url' => ['/site/about']],
                 //['label' => 'Contact', 'url' => ['/site/contact']],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+                //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
