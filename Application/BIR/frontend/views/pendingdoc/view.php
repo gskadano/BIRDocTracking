@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Pendingdoc */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Pendingdocs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Pending Documents', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pendingdoc-view">

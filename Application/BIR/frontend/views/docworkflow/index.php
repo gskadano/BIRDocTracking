@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\DocworkflowSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Docworkflows';
+$this->title = 'Document Workflow';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="docworkflow-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Docworkflow', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Document Workflow', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

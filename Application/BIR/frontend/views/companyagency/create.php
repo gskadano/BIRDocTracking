@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Companyagency */
 
-$this->title = 'Create Companyagency';
-$this->params['breadcrumbs'][] = ['label' => 'Companyagencies', 'url' => ['index']];
+$this->title = 'Create Company Agencies';
+$this->params['breadcrumbs'][] = ['label' => 'Company Agencies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="companyagency-create">

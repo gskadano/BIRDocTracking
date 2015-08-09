@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\PendingdocSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pendingdocs';
+$this->title = 'Pending Documents';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pendingdoc-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Pendingdoc', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Pending Document', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
