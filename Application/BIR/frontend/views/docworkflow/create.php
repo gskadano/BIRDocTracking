@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Docworkflow */
 
-$this->title = 'Create Docworkflow';
-$this->params['breadcrumbs'][] = ['label' => 'Docworkflows', 'url' => ['index']];
+$this->title = 'Create Document Workflow';
+$this->params['breadcrumbs'][] = ['label' => 'Document Workflow', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="docworkflow-create">
