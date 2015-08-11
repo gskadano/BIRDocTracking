@@ -33,8 +33,6 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'documentImage')->textInput() ?>
-
-    <?= $form->field($model, 'documentUpdate')->textInput() ?>
 	
 	<?= $form->field($model, 'category_id')->textInput() ?>
 

@@ -2,14 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-
+use dosamigos\datepicker\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model common\models\Document */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-
 
 <div class="document-form">
 
@@ -21,51 +18,33 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'documentDesc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentTargetDate')->textInput() ?>
-
-    
-	
-	<?= $form->field($model, 'category_id')->dropDownList(
-        ArrayHelper::map(\common\models\Category::find()->all(),'id', 'categoryName'),
-        ['prompt'=>'Select Category']
-    ) ?>
-
-	
-	<?= $form->field($model, 'type_id')->dropDownList(
-        ArrayHelper::map(\common\models\Type::find()->all(),'id', 'typeName'),
-        ['prompt'=>'Select Type']
-    ) ?>
-	
-	<?= $form->field($model, 'priority_id')->dropDownList(
-       ArrayHelper::map(\common\models\Priority::find()->all(),'id', 'priorityName'),
-        ['prompt'=>'Select Priority']
-    ) ?>
-	
-	
-	
+    <?= $form->field($model, 'documentTargetDate')->widget(
+    DatePicker::className(), [
+        // inline too, not bad
+         'inline' => false, 
+         // modify template for custom rendering
+        //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd'
+        ]
+]);?>
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
-    <?= $form->field($model, 'user_id')->dropDownList(
-		//ArrayHelper::map(user::find()->all(),'id', 'userLName'),
-        ['prompt'=>'Select Customer']
-    ) ?>
+    <?= $form->field($model, 'documentImage')->textInput() ?>
 	
-	<?= $form->field($model, 'companyAgency_id')->dropDownList(
-       // ArrayHelper::map(companyagency::find()->all(),'id', 'companyAgencyName'),
-        ['prompt'=>'Select Company Agency']
-    ) ?>
+	<?= $form->field($model, 'category_id')->textInput() ?>
 
-   
-	 <?=$form->field($model, 'documentImage')->fileInput(); ?>
+    <?= $form->field($model, 'type_id')->textInput() ?>
 
-    <?= $form->field($model, 'section_id')->textInput() ?>
+    <?= $form->field($model, 'priority_id')->textInput() ?>
+	
+	<?= $form->field($model, 'user_id')->textInput() ?>
 
-    <?= $form->field($model, 'documentCreate')->textInput() ?>
-
-    <?= $form->field($model, 'documentUpdate')->textInput() ?>
+    <?= $form->field($model, 'companyAgency_id')->textInput() ?>
+	
+	<?= $form->field($model, 'section_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
