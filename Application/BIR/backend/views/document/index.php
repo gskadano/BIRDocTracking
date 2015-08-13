@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
+
+use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
@@ -16,8 +21,32 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Document', ['create'], ['class' => 'btn btn-success']) ?>
+				<?= Html::a('Create Document', ['create'], ['class' => 'btn btn-success']) ?>		
     </p>
+	
+	<?php
+        Modal::begin([
+                'header'=>'<h4>Documents</h4>',
+                'id'=>'modal',
+                'size'=>'modal-sm',
+            ]);
+
+        echo "<div id='modalContent'></div>";
+
+        Modal::end()
+    ?>
+	
+	<?php
+        Modal::begin([
+                'header'=>'<h4>Documents</h4>',
+                'id'=>'modals',
+                'size'=>'modal-sm',
+            ]);
+
+        echo "<div id='modalsContent'></div>";
+
+        Modal::end()
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,11 +54,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            [	'attribute'=>'id',
+				'contentOptions'=>['style'=>'width: 20px;'],
+			],
             'document_tracking_number',
             'documentName',
             'documentDesc',
-            'documentTargetDate',
+			[
+				'attribute' => 'user_id',
+				'value' => 'user.username',
+			],
+            //'documentTargetDate',
             // 'category_id',
             // 'type_id',
             // 'priority_id',
@@ -41,8 +76,24 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'documentCreate',
             // 'documentUpdate',
 
-            ['class' => 'yii\grid\ActionColumn'],
+			
+			[
+					'attribute' => 'Actions',
+					'format' => 'raw',
+					'value' => function ($model) {                    
+					return Html::button('Release', ['value'=>Url::to('index.php?r=document/release&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
+					},
+			],
+			
+			
+
+			['class' => 'yii\grid\ActionColumn'],
+			
         ],
-    ]); ?>
+    ]); 
+	
+	?>
+	
+	
 
 </div>

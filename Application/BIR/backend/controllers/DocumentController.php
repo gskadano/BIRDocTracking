@@ -5,10 +5,14 @@ namespace backend\controllers;
 use Yii;
 use common\models\Document;
 use common\models\DocumentSearch;
+use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
+use common\models\Pendingdoc;
+use common\models\Section;
 
 /**
  * DocumentController implements the CRUD actions for Document model.
@@ -74,8 +78,16 @@ class DocumentController extends Controller
     {
         $model = new Document();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+		
+			$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+			
+			$model->user_id = $userid;
+		
+			if($model->save()){
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
+			
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -92,7 +104,11 @@ class DocumentController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-$model->documentUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
+		$model->documentUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
+		$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+			
+		$model->user_id = $userid;
+		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -101,6 +117,38 @@ $model->documentUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
             ]);
         }
     }
+	
+	public function actionRelease($id)
+	{
+		$model = $this->findModel($id);
+		
+		
+		
+
+		
+		
+		if ($model->load(Yii::$app->request->post())) {
+		//$userid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'user_id');
+		$sectionid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'section_id');
+		$userFName = ArrayHelper::getValue(User::find()->where(['id' => $model->user_id])->one(), 'userFName');
+		$userLName = ArrayHelper::getValue(User::find()->where(['id' => $model->user_id])->one(), 'userLName');
+		$section = ArrayHelper::getValue(Section::find()->where(['id' => $sectionid])->one(), 'sectionName');
+		$documentname = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'documentName');
+			$pendingdoc = new Pendingdoc();
+			$pendingdoc->pendingDocFName = $userFName . " " . $userLName;
+			$pendingdoc->pendingDocSection = $section;
+			$pendingdoc->pendingDocName = $documentname;
+			
+			if($pendingdoc->save()){
+				return $this->redirect(['index']);
+			}
+		}
+			else {
+			return $this->renderAjax('release', [
+                'model' => $model,
+			]);
+			}
+	}
 
     /**
      * Deletes an existing Document model.

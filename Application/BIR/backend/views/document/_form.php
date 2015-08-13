@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
+use common\models\User;
 /* @var $this yii\web\View */
 /* @var $model common\models\Document */
 /* @var $form yii\widgets\ActiveForm */
@@ -48,11 +49,6 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'priority_id')->dropDownList(
         ArrayHelper::map(\common\models\Priority::find()->all(),'id', 'priorityName'),
         ['prompt'=>'Priority']
-    ) ?>
-	
-	<?= $form->field($model, 'user_id')->dropDownList(
-        ArrayHelper::map(\common\models\User::find()->all(),'id', 'username'),
-        ['prompt'=>'User']
     ) ?>
 
     <?= $form->field($model, 'companyAgency_id')->dropDownList(
