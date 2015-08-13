@@ -50,7 +50,7 @@ class Companyagency extends \yii\db\ActiveRecord
             'id' => 'ID',
             'companyAgencyCode' => 'Company Agency Code',
             'companyAgencyName' => 'Company Agency Name',
-            'companyAgencyDesc' => 'Company Agency Desc',
+            'companyAgencyDesc' => 'Description',
             'companyAgencyCreate' => 'Company Agency Create',
             'companyAgencyUpdate' => 'Company Agency Update',
         ];

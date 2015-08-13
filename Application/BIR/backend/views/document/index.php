@@ -21,33 +21,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-				<?= Html::a('Create Document', ['create'], ['class' => 'btn btn-success']) ?>		
+        <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'showModalButton btn btn-success']) ?>
+
     </p>
 	
 	<?php
         Modal::begin([
                 'header'=>'<h4>Documents</h4>',
                 'id'=>'modal',
-                'size'=>'modal-sm',
+                //'size'=>'modal-sm',
             ]);
 
         echo "<div id='modalContent'></div>";
 
         Modal::end()
+	
     ?>
 	
-	<?php
-        Modal::begin([
-                'header'=>'<h4>Documents</h4>',
-                'id'=>'modals',
-                'size'=>'modal-sm',
-            ]);
-
-        echo "<div id='modalsContent'></div>";
-
-        Modal::end()
-    ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

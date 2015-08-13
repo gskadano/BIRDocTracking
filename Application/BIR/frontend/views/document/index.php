@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
@@ -14,10 +16,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Document', ['create'], ['class' => 'btn btn-success']) ?>
+	
+	<p>
+        <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
+	
+	 <?php
+        Modal::begin([
+			'header'=>'<h4>Document</h4>',
+			'id'=>'modal',
+			'size'=>'modal-lg',
+		]);
+
+        echo "<div id='modalContent'></div>";
+
+        Modal::end()
+    ?>
+<!--
+    <p>
+    
+    </p>-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

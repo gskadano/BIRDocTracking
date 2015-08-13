@@ -5,6 +5,9 @@ use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use common\models\User;
+
+
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Document */
 /* @var $form yii\widgets\ActiveForm */
@@ -20,21 +23,22 @@ use common\models\User;
 
     <?= $form->field($model, 'documentDesc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentTargetDate')->widget(
-    DatePicker::className(), [
+<?= $form->field($model, 'documentTargetDate')->widget(
+         DatePicker::className(), [
         // inline too, not bad
-         'inline' => false, 
+        'inline' => true, 
          // modify template for custom rendering
         //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
         'clientOptions' => [
             'autoclose' => true,
             'format' => 'yyyy-mm-dd'
         ]
-]);?>
+    ]);?>
+
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentImage')->textInput() ?>
+    <?= $form->field($model, 'documentImage')->fileInput() ?>
 	
 	<?= $form->field($model, 'category_id')->dropDownList(
         ArrayHelper::map(\common\models\Category::find()->all(),'id', 'categoryName'),

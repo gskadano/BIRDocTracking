@@ -89,7 +89,7 @@ class DocumentController extends Controller
 			}
 			
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

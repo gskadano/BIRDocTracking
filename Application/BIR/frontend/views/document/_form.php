@@ -20,9 +20,9 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'documentDesc')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'documentTargetDate')->widget(
-    DatePicker::className(), [
+         DatePicker::className(), [
         // inline too, not bad
-         'inline' => false, 
+        'inline' => false, 
          // modify template for custom rendering
         //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
         'clientOptions' => [

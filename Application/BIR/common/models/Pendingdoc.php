@@ -42,10 +42,10 @@ class Pendingdoc extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pendingDocFName' => 'Pending Doc Fname',
-            'pendingDocSection' => 'Pending Doc Section',
-            'pendingDocName' => 'Pending Doc Name',
-            'pendingDocTimeRelease' => 'Pending Doc Time Release',
+            'pendingDocFName' => 'First Name',
+            'pendingDocSection' => 'Section',
+            'pendingDocName' => 'Pending Document Name',
+            'pendingDocTimeRelease' => 'Time Release',
         ];
     }
 }

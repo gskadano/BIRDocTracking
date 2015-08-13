@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 //use common\models\position;
 //use common\models\section;
 
@@ -19,8 +21,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create User Admin', ['create'], ['class' => 'btn btn-success']) ?>    </p>
+        <?= Html::button('Create User', ['value'=>Url::to('index.php?r=user%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+	</p>
 
+	<?php
+        Modal::begin([
+                'header'=>'<h4>User</h4>',
+                'id'=>'modal',
+                'size'=>'modal-lg',
+            ]);
+
+        echo "<div id='modalContent'></div>";
+
+        Modal::end()
+    ?>
+	
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
