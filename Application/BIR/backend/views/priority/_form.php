@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'priorityDesc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'priorityCreate')->textInput() ?>
+    <!--<?= $form->field($model, 'priorityCreate')->textInput() ?>
 
-    <?= $form->field($model, 'priorityUpdate')->textInput() ?>
+    <?= $form->field($model, 'priorityUpdate')->textInput() ?>-->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

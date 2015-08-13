@@ -74,7 +74,7 @@ class UserAdmin extends \yii\db\ActiveRecord implements IdentityInterface
             'userMName' => 'Middle Name',
             'userLName' => 'Last Name',
             'username' => 'Username',
-            'password_hash' => 'Password Hash',
+            'password_hash' => 'Password',
             'auth_key' => 'Authentication Key',
             'status' => 'Status',
             'email' => 'Email',

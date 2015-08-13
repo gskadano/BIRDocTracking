@@ -53,10 +53,10 @@ class Docworkflow extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'document_id' => 'Document ID',
-            'user_receive' => 'User Receive',
-            'docStatus_id' => 'Doc Status ID',
-            'docWorkflowComment' => 'Doc Workflow Comment',
+            'document_id' => 'Document',
+            'user_receive' => 'Receiver',
+            'docStatus_id' => 'Document Status ',
+            'docWorkflowComment' => 'Comment',
             'timeAccepted' => 'Time Accepted',
             'timeRelease' => 'Time Release',
             'totalTimeSpent' => 'Total Time Spent',

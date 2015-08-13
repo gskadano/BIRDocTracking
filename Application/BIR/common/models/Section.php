@@ -46,10 +46,10 @@ class Section extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'sectionNum' => 'Section Num',
+            'sectionNum' => 'Section',
             'sectionCode' => 'Section Code',
             'sectionName' => 'Section Name',
-            'sectionDesc' => 'Section Desc',
+            'sectionDesc' => 'Description',
         ];
     }
 

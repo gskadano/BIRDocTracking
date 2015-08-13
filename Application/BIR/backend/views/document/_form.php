@@ -33,7 +33,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentImage')->textInput() ?>
+    <?= $form->field($model, 'documentImage')->fileInput() ?>
 	
 	<?= $form->field($model, 'category_id')->dropDownList(
         ArrayHelper::map(\common\models\Category::find()->all(),'id', 'categoryName'),
