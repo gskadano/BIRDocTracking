@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Document */
 /* @var $form yii\widgets\ActiveForm */
@@ -19,17 +20,18 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'documentDesc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentTargetDate')->widget(
-    DatePicker::className(), [
+<?= $form->field($model, 'documentTargetDate')->widget(
+         DatePicker::className(), [
         // inline too, not bad
-         'inline' => false, 
+        'inline' => true, 
          // modify template for custom rendering
         //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
         'clientOptions' => [
             'autoclose' => true,
             'format' => 'yyyy-mm-dd'
         ]
-]);?>
+    ]);?>
+
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 
