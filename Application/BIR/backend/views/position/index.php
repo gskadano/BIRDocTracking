@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\PositionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Positions';
+$this->title = 'Position';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="position-index">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'positionCode',
             'positionName',
             'positionDesc',

@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\PendingdocSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pendingdocs';
+$this->title = 'Pending Document';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pendingdoc-index">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+           // 'id',
             'pendingDocFName',
             'pendingDocSection',
             'pendingDocName',

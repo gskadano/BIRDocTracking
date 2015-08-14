@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Docworkflow */
 
-$this->title = 'Update Docworkflow: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Docworkflows', 'url' => ['index']];
+$this->title = 'Update Document Workflow: ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Document Workflow', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

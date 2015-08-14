@@ -25,15 +25,38 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'BIR-DWTS',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+           
+			$menuItems = [
+                ['label' => 'Employee', 'visible' => !Yii::$app->user->isGuest, 'url' => ['/user']],
             ];
+			
+			$menuItems[]=['label' => 'Document',
+               'visible' => !Yii::$app->user->isGuest,
+                'items' => [
+                    ['label' => 'My Document', 'url' => ['/document']],
+                    ['label' => 'Document Workflow', 'url' => ['/docworkflow']],
+					['label' => 'Pending Document', 'url' => ['/pendingdoc']],
+                ],
+
+            ];
+			
+			$menuItems[]=['label' => 'Others',
+                'visible' => !Yii::$app->user->isGuest,
+                'items' => [
+                    ['label' => 'Priority', 'url' => ['/priority']],
+                    ['label' => 'Type', 'url' => ['/type']],
+                    ['label' => 'Section', 'url' => ['/section']],
+					['label' => 'Position', 'url' => ['/position']],
+                ],
+
+            ];
+			
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {

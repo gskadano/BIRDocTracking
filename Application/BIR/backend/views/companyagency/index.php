@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\CompanyagencySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Companyagencies';
+$this->title = 'Company Agencies';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="companyagency-index">

@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\DocworkflowSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Docworkflows';
+$this->title = 'Document Workflow';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="docworkflow-index">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'document_id',
             'user_receive',
             'docStatus_id',

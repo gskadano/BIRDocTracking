@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2015 at 05:26 AM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Generation Time: Aug 14, 2015 at 06:14 AM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -48,19 +48,17 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(100) NOT NULL,
   `categoryDesc` varchar(255) DEFAULT NULL,
-  `categoryCreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `categoryUpdate` datetime DEFAULT NULL,
+  `categoryCreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `categoryUpdate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `categoryName`, `categoryDesc`, `categoryCreate`, `categoryUpdate`) VALUES
-(1, 'Category1', 'Test', '2015-08-07 07:21:54', NULL),
-(2, 'Category2', 'Test', '2015-08-07 07:22:14', NULL),
-(3, 'Category3', 'Test', '2015-08-07 07:22:34', NULL);
+(1, 'qwe', 'qwe', '2015-08-11 14:48:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -83,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `companyagency` (
 --
 
 INSERT INTO `companyagency` (`id`, `companyAgencyCode`, `companyAgencyName`, `companyAgencyDesc`, `companyAgencyCreate`, `companyAgencyUpdate`) VALUES
-(1, 'dad', 'CHERRY', 'HAPPY SHALALA', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'DOH', 'qw', 'qw', '2015-08-11 14:48:18', '2015-08-11 14:48:18');
 
 -- --------------------------------------------------------
 
@@ -96,16 +94,7 @@ CREATE TABLE IF NOT EXISTS `docstatus` (
   `docStatusName` varchar(45) NOT NULL,
   `docStatusDesc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `docstatus`
---
-
-INSERT INTO `docstatus` (`id`, `docStatusName`, `docStatusDesc`) VALUES
-(1, 'Pending', 'Document is not yet confirmed'),
-(2, 'Finished', 'Document  is confirmed'),
-(3, 'On-going', 'Document is still on process');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -136,7 +125,15 @@ CREATE TABLE IF NOT EXISTS `document` (
   KEY `fk_document_companyAgency1_idx` (`companyAgency_id`),
   KEY `fk_document_category1_idx` (`category_id`),
   KEY `fk_document_section1_idx` (`section_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `document`
+--
+
+INSERT INTO `document` (`id`, `document_tracking_number`, `documentName`, `documentDesc`, `documentTargetDate`, `category_id`, `type_id`, `priority_id`, `documentComment`, `user_id`, `companyAgency_id`, `documentImage`, `section_id`, `documentCreate`, `documentUpdate`) VALUES
+(1, '20150811-01-0001', 'sample', 'sample', '2015-08-31', 1, 1, 1, 'sample', 66, 1, 0x736c696465342e6a7067, 1, '2015-08-11 14:49:45', NULL),
+(2, '20150814-01-0002', 'dfergtyui', 'qwertyu', '2015-08-31', 1, 1, 1, 'qwertuil', 63, 1, 0x736467686a, 1, '2015-08-14 11:43:17', NULL);
 
 --
 -- Triggers `document`
@@ -242,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `position` (
 
 INSERT INTO `position` (`id`, `positionCode`, `positionName`, `positionDesc`, `positionNotes`) VALUES
 (1, 'RCV - MMS', 'Receiver', 'Receives document', 'Receiving department - MMS'),
-(2, 'TEST-1', 'Test csbuaquina', 'Hello guys', 'haha');
+(2, 'Admin', 'System Administrator', 'Admin', NULL);
 
 -- --------------------------------------------------------
 
@@ -257,17 +254,14 @@ CREATE TABLE IF NOT EXISTS `priority` (
   `priorityCreate` datetime DEFAULT CURRENT_TIMESTAMP,
   `priorityUpdate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `priority`
 --
 
 INSERT INTO `priority` (`id`, `priorityName`, `priorityDesc`, `priorityCreate`, `priorityUpdate`) VALUES
-(1, 'Urgent', 'Test', NULL, NULL),
-(2, 'High', 'Test', NULL, NULL),
-(3, 'Medium', 'Test', NULL, NULL),
-(4, 'Low', 'Test', NULL, NULL);
+(1, 'Urgent', 'urgent', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -295,14 +289,22 @@ INSERT INTO `section` (`id`, `sectionNum`, `sectionCode`, `sectionName`, `sectio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tableseq`
+-- Table structure for table `table_seq`
 --
 
-CREATE TABLE IF NOT EXISTS `tableseq` (
+CREATE TABLE IF NOT EXISTS `table_seq` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `timestamp` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `table_seq`
+--
+
+INSERT INTO `table_seq` (`id`, `timestamp`) VALUES
+(1, '2015-08-11'),
+(2, '2015-08-14');
 
 -- --------------------------------------------------------
 
@@ -317,16 +319,14 @@ CREATE TABLE IF NOT EXISTS `type` (
   `typeCreate` datetime DEFAULT CURRENT_TIMESTAMP,
   `typeUpdate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `type`
 --
 
 INSERT INTO `type` (`id`, `typeName`, `typeDesc`, `typeCreate`, `typeUpdate`) VALUES
-(1, 'Type A', 'Test', NULL, NULL),
-(2, 'Type B', 'Test', NULL, NULL),
-(3, 'Type C', 'Test', NULL, NULL);
+(1, 'qwe', 'qwe', '2015-08-11 14:49:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -344,21 +344,30 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(45) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `auth_key` varchar(255) DEFAULT NULL,
-  `status` smallint(6) NOT NULL,
+  `status` smallint(6) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_position_idx` (`position_id`),
   KEY `fk_user_section1_idx` (`section_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `position_id`, `section_id`, `userFName`, `userMName`, `userLName`, `username`, `password_hash`, `auth_key`, `status`, `email`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 'Cherry', 'S', 'Buaquina', 'csbuaquina', '$2y$13$A/Xx/MMc0ahBVmJAF0Pvcu6j6.qaXA12QoJqQWp1X/x.WsRegDKOa', 'CyKt9JHgHk06kPFI2CoU9jRIPu4I-VoF', 10, 'csbuaquina@yahoo.com', '2015-08-07 04:56:21', '0000-00-00 00:00:00');
+(63, 1, 2, 'Meynard', '', 'Denoyo', 'mrdenoyo', '$2y$13$pFcOlbO0nQ7z/sLxsIIweOYru8ntLZt7yEanC6gDLEIX2t5ulYUqW', 'm8uOappqhMfr16Mg7Oq75u87xf6pA63F', 10, 'mrdenoyo@bir.gov.ph', '2015-08-05 01:54:03', NULL),
+(66, 1, 2, 'Jerica', '', 'Flores', 'jnflores', '$2y$13$fp2O8weiZEV8J0mYspe3qOWCeqjO/9ktMypv9Cd5fzlEy6z4SXjgu', 'il47I_GU13g5Ch0QCs0J3GKCCJCXJPFf', 10, 'jnflores@bir.gov.ph', '2015-08-05 02:00:45', NULL),
+(68, 1, 1, 'Cherry Mae', '', 'Buaquina', 'csbuaquina', '$2y$13$ZogjLUOUyBylXHLgX2KKk.SZVYuMu5Rx6JcWLqg1y971RxB8mya1.', 'E93d-D7stRyrPYSbmMRouGVIzcQotLWu', 10, 'csbuaquina@bir.gov.ph', '2015-08-05 02:04:45', '2015-08-11 06:03:14'),
+(70, 1, 2, 'Gene Anthony', '', 'Kadano', 'gskadano', '$2y$13$eoHZUJ/OZbi3HMX/Sg4wK.DUu6wSYwX79OK3fNigwhB0i8acPguK6', 'KKDoJ0HHa1LBXPV2zpxeLuQ0GiKJWc8y', 10, 'gskadano@bir.gov.ph', '2015-08-05 02:09:53', NULL),
+(71, 1, 2, 'Mark Joshua', '', 'Ronquillo', 'mdronquillo', '$2y$13$H/78kPkVMIy7.CsCJ6/iteAqwjafi37JA8nNINKwU1HKBZJYtykKK', 'tZtbwyTQCa8MLwavgBlzKlQpXqLSfP9y', 10, 'mdronquillo@bir.gov.ph', '2015-08-05 02:15:28', NULL),
+(72, 1, 2, 'John Michael', '', 'Santos', 'jmsantos', '$2y$13$hx04BenmWP/qhn.XpAw7R.1LUPOk23RzcnUJPz3kmd1W.CvlCQvgW', 'h8lPi0RE0QRy-I5LBGyNW1PEAnT0PucM', 10, 'jmsantos@bir.gov.ph', '2015-08-06 13:52:36', NULL),
+(73, 1, 2, 'Christine', '', 'Ferrer', 'cjferrer', '$2y$13$u02SALvZ7Ko.3OQXewRkR.cz3NBl1IV7W2/Zs8HEBa98S5u9p5av2', 'ARYFmjh-GAjqMNt2X0bvwwwcRzGBJpnA', 10, 'cjferrer@bir.gov.ph', '2015-08-06 13:54:00', NULL),
+(78, 1, 1, 'Alexis', '', 'Cuntapay', 'alexiscntp', '$2y$13$gxjXtmX85fQyZAUgbkNxGOwsgqVPZmXhxQH5TuBShCxE1fqWqbQwe', 'uuAiN7ada_quF9PtJpf2w0xwZr-C64cI', 10, 'alexiscntp', '2015-08-07 19:54:17', '2015-08-07 21:55:42'),
+(81, 1, 1, 'Carlos', '', 'Nerez', 'cdbnerez', '$2y$13$7Ovx6hSC2telKNjzwnvbCuIXgTVPSJYiAVd3JW.IBTst3nsxVK6/m', 'S_EukEPBCElE_0y_fsomVwwMZy5tPZ9p', 10, 'cdbnerez@bir.gov.ph', '2015-08-07 20:18:17', '2015-08-07 22:19:12'),
+(83, 1, 2, 'Mark Ervin', '', 'Barbasa', 'mmbarbasa', '$2y$13$9hHiuQs5ckkNINYRMuSw3enR.627UNZ2yJWEaxuZag0fbDU6W.0IW', 'aV3B8UEZk9b3Zm39Dzq0vpg2_7tp674p', 10, 'mmbarbasa@bir.gov.ph', '2015-08-07 20:28:18', '2015-08-07 22:28:32');
 
 --
 -- Constraints for dumped tables
@@ -401,7 +410,7 @@ DELIMITER $$
 --
 -- Events
 --
-CREATE DEFINER=`root`@`localhost` EVENT `e-daily` ON SCHEDULE EVERY 1 DAY STARTS '2015-04-27 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Descriptive comment' DO TRUNCATE table_seq$$
+CREATE DEFINER=`root`@`localhost` EVENT `e-daily` ON SCHEDULE EVERY 1 DAY STARTS '2015-04-27 15:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Descriptive comment' DO TRUNCATE table_seq$$
 
 DELIMITER ;
 
