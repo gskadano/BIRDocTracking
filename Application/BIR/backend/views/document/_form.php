@@ -26,7 +26,7 @@ use common\models\User;
 <?= $form->field($model, 'documentTargetDate')->widget(
          DatePicker::className(), [
         // inline too, not bad
-        'inline' => true, 
+        'inline' => false, 
          // modify template for custom rendering
         //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
         'clientOptions' => [
