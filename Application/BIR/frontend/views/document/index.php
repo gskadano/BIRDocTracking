@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
+use dosamigos\datepicker\DatePicker;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -42,12 +43,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+			[
+            'attribute' => 'id',
+			'contentOptions'=>['style'=>'width: 20px;'],
+			],
             'document_tracking_number',
             'documentName',
             'documentDesc',
-            'documentTargetDate',
+			[
+                'attribute' => 'documentTargetDate',
+				'contentOptions'=>['style'=>'width: 165px;'],
+                'value' => 'documentTargetDate',
+                'format' => 'raw',
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'documentTargetDate', 
+                    'clientOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]),
+            ],
             // 'category_id',
             // 'type_id',
             // 'priority_id',
