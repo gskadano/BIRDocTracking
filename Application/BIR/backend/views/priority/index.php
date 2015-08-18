@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button('Create Priority', ['value'=>Url::to('index.php?r=priority%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        <?= Html::button('Create Priority', ['value'=>Url::to('index.php?r=priority%2Fcreate'),'class' => 'showModalButton btn btn-success]) ?>
     </p>
 
 	<?php
