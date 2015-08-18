@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\User;
-use common\models\Document
+use common\models\Document;
 
 /**
  * PendingdocController implements the CRUD actions for Pendingdoc model.
