@@ -15,7 +15,6 @@ use yii\bootstrap\Modal;
 $this->title = 'Documents';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="document-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -45,16 +44,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-           // 'id',
-            [	'attribute'=>'id',
-				'contentOptions'=>['style'=>'width: 20px;'],
-			],
 
            // 'id',
 
             [	'attribute'=>'id',
 				'contentOptions'=>['style'=>'width: 20px;'],
 			],
+
             'document_tracking_number',
             'documentName',
             'documentDesc',

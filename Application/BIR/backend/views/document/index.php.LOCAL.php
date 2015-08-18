@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
-use dosamigos\datepicker\DatePicker;
+
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
@@ -15,7 +15,6 @@ use yii\bootstrap\Modal;
 $this->title = 'Documents';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="document-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -49,33 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [	'attribute'=>'id',
 				'contentOptions'=>['style'=>'width: 20px;'],
 			],
-
-           // 'id',
-
-            [	'attribute'=>'id',
-				'contentOptions'=>['style'=>'width: 20px;'],
-			],
             'document_tracking_number',
             'documentName',
             'documentDesc',
-			/*[
+			[
 				'attribute' => 'user_id',
 				'value' => 'user.username',
-			],*/
-			[
-                'attribute' => 'documentTargetDate',
-				'contentOptions'=>['style'=>'width: 165px;'],
-                'value' => 'documentTargetDate',
-                'format' => 'raw',
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'documentTargetDate', 
-                    'clientOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]),
-            ],
+			],
             //'documentTargetDate',
             // 'category_id',
             // 'type_id',
