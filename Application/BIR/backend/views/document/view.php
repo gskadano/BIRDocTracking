@@ -39,7 +39,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'documentComment',
             'user_id',
             'companyAgency_id',
-            'documentImage',
+            //'documentImage',
+			/*array(
+	                'name'=>'docPicture',
+	                'type'=>'raw',
+	                'value'=>html_entity_decode(CHtml::image(Yii::app()->controller->createUrl('church/loadImage', array('id'=>$model->id))
+	                                                                                ,'alt'
+	                                                                                ,array('width'=>300)
+	                                                                                )),
+	                ),*/
+			[
+				'attribute'=>'documentImage',
+				'value'=>\yii\helpers\Html::img('<img src =' .'uploads/' . $model->documentImage),
+				//'value'=>yii\helpers\Html::app()->controller->createUrl('backend\controllers\DocumentController\loadImage', array('id'=>$model->id)),
+				'format' => ['image',['width'=>'100','height'=>'100']],
+			],
             'section_id',
             'documentCreate',
             'documentUpdate',

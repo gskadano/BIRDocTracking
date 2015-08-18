@@ -71,7 +71,7 @@ class Document extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'type_id' => 'Type ID',
             'priority_id' => 'Priority ID',
-            'documentComment' => 'Document Comment',
+            'documentComment' => 'Comment',
             'user_id' => 'User ID',
             'companyAgency_id' => 'Company Agency ID',
             'documentImage' => 'Document Image',
