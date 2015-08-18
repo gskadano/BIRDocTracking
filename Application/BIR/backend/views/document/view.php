@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'documentName',
             'documentDesc',
             'documentTargetDate',
-['label' => 'Category',
+			['label' => 'Category',
 			'value' => $model->category->categoryName,
 			],
 			['label' => 'Type',
@@ -49,7 +49,21 @@ $this->params['breadcrumbs'][] = $this->title;
 			['label' => 'Company Agency',
 			'value' => $model->companyAgency->companyAgencyName,
 			],
-            'documentImage',
+            //'documentImage',
+			/*array(
+	                'name'=>'docPicture',
+	                'type'=>'raw',
+	                'value'=>html_entity_decode(CHtml::image(Yii::app()->controller->createUrl('church/loadImage', array('id'=>$model->id))
+	                                                                                ,'alt'
+	                                                                                ,array('width'=>300)
+	                                                                                )),
+	                ),*/
+			[
+				'attribute'=>'documentImage',
+				'value'=>\yii\helpers\Html::img('<img src =' .'uploads/' . $model->documentImage),
+				//'value'=>yii\helpers\Html::app()->controller->createUrl('backend\controllers\DocumentController\loadImage', array('id'=>$model->id)),
+				'format' => ['image',['width'=>'100','height'=>'100']],
+			],
 			['label' => 'Section',
 			'value' => $model->section->sectionName,
 			],

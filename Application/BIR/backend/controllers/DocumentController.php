@@ -24,14 +24,14 @@ class DocumentController extends Controller
         return [
 			'access'=>[
 				'class'=>AccessControl::classname(),
-				'only'=>['create','update','index'],
+				'only'=>['create','update','index', 'loadImage'],
 				'rules'=>[
 					[
 						'allow'=>true,
 						'roles'=>['@']
 					],
 				]
-			],
+			],  
 		
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -178,4 +178,15 @@ class DocumentController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
+	/*
+	Public function actionloadImage($id)
+	{
+		$model=$this->loadModel($id);
+
+		header('Content-Type: ' . $model->fileType);
+		print $model->documentImage;
+
+	}
+	*/
 }

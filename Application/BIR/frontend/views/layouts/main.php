@@ -10,7 +10,11 @@ use frontend\widgets\Alert;
 /* @var $content string */
 
 AppAsset::register($this);
-
+/*
+$role = Yii::$app->user->identity->position_id;
+if($role == 2){
+	return Yii::$app->getResponse()->redirect('/backend/web/index.php?r=document');
+}else{ */
 ?>
 <?php $this->beginPage()  ?>
 <!DOCTYPE html>
@@ -34,15 +38,28 @@ AppAsset::register($this);
                    'class' => 'navbar-inverse navbar-fixed-top',
                ],
             ]);
-            $menuItems = [
-                //['label' => 'Home', 'url' => ['/site/index']],
-                //['label' => 'About', 'url' => ['/site/about']],
-                //['label' => 'Contact', 'url' => ['/site/contact']],
-            ];
+			
             if (Yii::$app->user->isGuest) {
                 //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
+				$roles = Yii::$app->user->identity->position_id;
+				if($roles == 2){
+					$menuItems = [
+						//['label' => 'Home', 'url' => ['/site/index']],
+						//['label' => 'About', 'url' => ['/site/about']],
+						//['label' => 'Contact', 'url' => ['/site/contact']],
+					];
+					//return Yii::$app->getResponse()->redirect('/birproj/backend/web/index.php?r=document');
+					//return $this->redirect('/birproj/backend/web/index.php?r=document');
+				}else{
+					$menuItems = [
+						['label' => 'Home', 'url' => ['/site/index']],
+						['label' => 'About', 'url' => ['/site/about']],
+						['label' => 'Contact', 'url' => ['/site/contact']],
+					];
+					//return Yii::$app->getResponse()->redirect('index.php?r=document');
+				}
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
@@ -76,4 +93,4 @@ AppAsset::register($this);
     <?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php /*}*/ $this->endPage() ?>
