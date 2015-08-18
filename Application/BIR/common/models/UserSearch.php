@@ -66,10 +66,12 @@ class UserSearch extends UserAdmin
             'updated_at' => $this->updated_at,
         ]);*/
 		
-		$query->joinWith('position')
+		$query
+		    ->joinWith('position')
 		    ->joinWith('section');
 
-        $query->andFilterWhere(['like', 'userFName', $this->userFName])
+        $query
+		    ->andFilterWhere(['like', 'userFName', $this->userFName])
             ->andFilterWhere(['like', 'userMName', $this->userMName])
             ->andFilterWhere(['like', 'userLName', $this->userLName])
             ->andFilterWhere(['like', 'username', $this->username])
