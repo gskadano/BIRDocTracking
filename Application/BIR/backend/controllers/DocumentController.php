@@ -135,7 +135,7 @@ class DocumentController extends Controller
 		$section = ArrayHelper::getValue(Section::find()->where(['id' => $sectionid])->one(), 'sectionName');
 		$documentname = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'documentName');
 			$pendingdoc = new Pendingdoc();
-			$pendingdoc->pendingDocFName = $userFName . " " . $userLName;
+			$pendingdoc->pendingDocFName = $userLName . ', ' . $userFName;
 			$pendingdoc->pendingDocSection = $section;
 			$pendingdoc->pendingDocName = $documentname;
 			

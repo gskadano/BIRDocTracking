@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\PendingdocSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo "<div id='modalContent'></div>";
 
         Modal::end()
+
     ?>
 
     <?= GridView::widget([
