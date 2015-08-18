@@ -49,12 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
             [	'attribute'=>'id',
 				'contentOptions'=>['style'=>'width: 20px;'],
 			],
-
-           // 'id',
-
-            [	'attribute'=>'id',
-				'contentOptions'=>['style'=>'width: 20px;'],
-			],
             'document_tracking_number',
             'documentName',
             'documentDesc',
