@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'categoryDesc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'categoryCreate')->textInput() ?>
+   <!-- <?= $form->field($model, 'categoryCreate')->textInput() ?> -->
 
-    <?= $form->field($model, 'categoryUpdate')->textInput() ?>
+    <!-- <?= $form->field($model, 'categoryUpdate')->textInput() ?> -->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

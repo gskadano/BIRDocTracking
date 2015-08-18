@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\User;
+use common\models\Document
 
 /**
  * PendingdocController implements the CRUD actions for Pendingdoc model.
@@ -77,7 +79,7 @@ class PendingdocController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
@@ -114,6 +116,34 @@ class PendingdocController extends Controller
 
         return $this->redirect(['index']);
     }
+	
+	public function actionRelease($id)
+	{
+		//$model = $this->findModel($id);
+		$model = new Pendingdoc();
+		
+		$userid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'user_id');
+		
+		$userFName = ArrayHelper::getValue(User::find()->where(['id' => $userid])->one(), 'userFName');
+		$userLName = ArrayHelper::getValue(User::find()->where(['id' => $userid])->one(), 'userLName');
+		$section = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'section_id');
+		$documentname = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'documentName');
+		
+		if ($model->load(Yii::$app->request->post())) {
+			$model->pendingDocFName = $userFName . $userLName;
+			$model->pendingDocSection = $section;
+			$model->pendingDocName = $documentname;
+			
+			if($model->save()){
+				return $this->redirect(['document/index']);
+			}
+		}
+			else {
+			return $this->renderAjax('release', [
+                'model' => $model,
+			]);
+			}
+	}
 
     /**
      * Finds the Pendingdoc model based on its primary key value.

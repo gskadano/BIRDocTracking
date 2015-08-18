@@ -46,7 +46,7 @@ class Type extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'typeName' => 'Type Name',
-            'typeDesc' => 'Type Desc',
+            'typeDesc' => 'Description',
             'typeCreate' => 'Type Create',
             'typeUpdate' => 'Type Update',
         ];

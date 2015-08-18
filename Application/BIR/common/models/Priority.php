@@ -46,7 +46,7 @@ class Priority extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'priorityName' => 'Priority Name',
-            'priorityDesc' => 'Priority Desc',
+            'priorityDesc' => 'Description',
             'priorityCreate' => 'Priority Create',
             'priorityUpdate' => 'Priority Update',
         ];

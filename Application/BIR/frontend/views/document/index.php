@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\Modal;
+use dosamigos\datepicker\DatePicker;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
@@ -14,22 +17,53 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Document', ['create'], ['class' => 'btn btn-success']) ?>
+	
+	<p>
+        <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
+	
+	 <?php
+        Modal::begin([
+			'header'=>'<h4>Document</h4>',
+			'id'=>'modal',
+			'size'=>'modal-lg',
+		]);
+
+        echo "<div id='modalContent'></div>";
+
+        Modal::end()
+    ?>
+<!--
+    <p>
+    
+    </p>-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+			[
+            'attribute' => 'id',
+			'contentOptions'=>['style'=>'width: 20px;'],
+			],
             'document_tracking_number',
             'documentName',
             'documentDesc',
-            'documentTargetDate',
+			[
+                'attribute' => 'documentTargetDate',
+				'contentOptions'=>['style'=>'width: 165px;'],
+                'value' => 'documentTargetDate',
+                'format' => 'raw',
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'documentTargetDate', 
+                    'clientOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]),
+            ],
             // 'category_id',
             // 'type_id',
             // 'priority_id',

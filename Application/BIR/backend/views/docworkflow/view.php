@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Docworkflow */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Docworkflows', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Document Workflow', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="docworkflow-view">
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+           // 'id',
             'document_id',
             'user_receive',
             'docStatus_id',

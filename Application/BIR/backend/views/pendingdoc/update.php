@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Pendingdoc */
 
-$this->title = 'Update Pendingdoc: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Pendingdocs', 'url' => ['index']];
+$this->title = 'Update Pending Document: ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Pending Document', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

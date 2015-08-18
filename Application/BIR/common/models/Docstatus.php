@@ -42,8 +42,8 @@ class Docstatus extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'docStatusName' => 'Doc Status Name',
-            'docStatusDesc' => 'Doc Status Desc',
+            'docStatusName' => 'Document Status Name',
+            'docStatusDesc' => 'Description',
         ];
     }
 

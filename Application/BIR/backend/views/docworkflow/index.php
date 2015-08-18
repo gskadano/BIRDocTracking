@@ -2,12 +2,13 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocworkflowSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Docworkflows';
+$this->title = 'Document Workflow';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="docworkflow-index">
@@ -16,16 +17,28 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Docworkflow', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Create Document Workflow', ['value'=>Url::to('index.php?r=docworkflow%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
 
+	<?php
+        Modal::begin([
+                'header'=>'<h4>Document Workflow</h4>',
+                'id'=>'modal',
+                'size'=>'modal-lg',
+            ]);
+
+        echo "<div id='modalContent'></div>";
+
+        Modal::end()
+    ?>
+	
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'document_id',
             'user_receive',
             'docStatus_id',

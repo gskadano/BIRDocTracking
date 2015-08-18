@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Position */
 
 $this->title = $model->positionName;
-$this->params['breadcrumbs'][] = ['label' => 'Positions', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Position', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="position-view">

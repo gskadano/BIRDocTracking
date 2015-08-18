@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
+use dosamigos\datepicker\DatePicker;
+use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
@@ -16,20 +21,58 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Document', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'showModalButton btn btn-success']) ?>
 
+    </p>
+	
+	<?php
+        Modal::begin([
+                'header'=>'<h4>Documents</h4>',
+                'id'=>'modal',
+                //'size'=>'modal-sm',
+            ]);
+
+        echo "<div id='modalContent'></div>";
+
+        Modal::end()
+	
+    ?>
+	
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+
+           // 'id',
+
+            [	'attribute'=>'id',
+				'contentOptions'=>['style'=>'width: 20px;'],
+			],
+
             'document_tracking_number',
             'documentName',
             'documentDesc',
-            'documentTargetDate',
+			/*[
+				'attribute' => 'user_id',
+				'value' => 'user.username',
+			],*/
+			[
+                'attribute' => 'documentTargetDate',
+				'contentOptions'=>['style'=>'width: 165px;'],
+                'value' => 'documentTargetDate',
+                'format' => 'raw',
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'documentTargetDate', 
+                    'clientOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]),
+            ],
+            //'documentTargetDate',
             // 'category_id',
             // 'type_id',
             // 'priority_id',
@@ -41,8 +84,24 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'documentCreate',
             // 'documentUpdate',
 
-            ['class' => 'yii\grid\ActionColumn'],
+			
+			[
+					'attribute' => 'Actions',
+					'format' => 'raw',
+					'value' => function ($model) {                    
+					return Html::button('Release', ['value'=>Url::to('index.php?r=document/release&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
+					},
+			],
+			
+			
+
+			['class' => 'yii\grid\ActionColumn'],
+			
         ],
-    ]); ?>
+    ]); 
+	
+	?>
+	
+	
 
 </div>

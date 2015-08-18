@@ -48,10 +48,10 @@ class Agencycperson extends \yii\db\ActiveRecord
             'id' => 'ID',
             'firstName' => 'First Name',
             'lastName' => 'Last Name',
-            'phoneNumber' => 'Phone Number',
-            'telNumber' => 'Tel Number',
+            'phoneNumber' => 'Phone No.',
+            'telNumber' => 'Telephone No.',
             'email' => 'Email',
-            'companyAgency_id' => 'Company Agency ID',
+            'companyAgency_id' => 'Company Agency',
         ];
     }
 
