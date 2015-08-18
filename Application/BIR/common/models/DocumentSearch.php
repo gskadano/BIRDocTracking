@@ -6,6 +6,8 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Document;
+use yii\helpers\ArrayHelper;
+use common\models\User;
 
 /**
  * DocumentSearch represents the model behind the search form about `common\models\Document`.
@@ -42,6 +44,9 @@ class DocumentSearch extends Document
     public function search($params)
     {
         $query = Document::find();
+		
+		$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+		$query->where(['user_id' => $userid]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
