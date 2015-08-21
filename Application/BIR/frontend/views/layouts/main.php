@@ -32,7 +32,7 @@ if($role == 2){
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'Bureau of Internal Revenue',
+                'brandLabel' => "Bureau of Internal Revenue's Document Workflow Tracking System",
 				//'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                    'class' => 'navbar-inverse navbar-fixed-top',
@@ -57,7 +57,15 @@ if($role == 2){
 					$menuItems = [
 						['label' => 'Home', 'url' => ['/site/index']],
 						['label' => 'About', 'url' => ['/site/about']],
-						['label' => 'Contact', 'url' => ['/site/contact']],
+					];
+					
+					$menuItems[]=['label' => 'Document',
+					   'visible' => !Yii::$app->user->isGuest,
+						'items' => [
+							['label' => 'My Document', 'url' => ['/document']],
+							['label' => 'Document Workflow', 'url' => ['/docworkflow']],
+							['label' => 'Pending Document', 'url' => ['/pendingdoc']],
+						],
 					];
 					//return Yii::$app->getResponse()->redirect('index.php?r=document');
 				}
