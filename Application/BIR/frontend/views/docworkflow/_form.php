@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Docworkflow */
@@ -13,11 +14,15 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'document_id')->textInput() ?>
+	
+	<?= $form->field($model, 'user_receive')->dropDownList(
+        ArrayHelper::map(\common\models\User::find()->all(),'id', 'FPname'),
+        ['prompt'=>'Receiver']
+    ) ?>
 
-    <?= $form->field($model, 'user_receive')->textInput() ?>
-
-    <?= $form->field($model, 'docStatus_id')->textInput() ?>
-
+	<?= $form->field($model, 'docStatus_id')->dropDownList(['0' => 'Pending', '1' => 'Working on It', '2' => 'Approved']); ?>
+	
+    
     <?= $form->field($model, 'docWorkflowComment')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'timeAccepted')->textInput() ?>
@@ -26,8 +31,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'totalTimeSpent')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'user_release')->textInput() ?>
-
+	<?= $form->field($model, 'user_release')->dropDownList(
+        ArrayHelper::map(\common\models\User::find()->all(),'id', 'FPname'),
+        ['prompt'=>'Reciepient']
+    ) ?>
+	
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -195,6 +195,11 @@ class User extends ActiveRecord implements IdentityInterface
 		return $this->userLName . ', ' . $this->userFName;
 	}
 	
+	public function getFPname()
+	{
+		return $this->userLName . ', ' . $this->userFName  . '; ' . $this->position->positionName;
+	}
+	
 	public function getPosition()
     {
         return $this->hasOne(Position::className(), ['id' => 'position_id']);

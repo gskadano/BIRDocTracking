@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Pendingdoc */
@@ -14,8 +15,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pendingDocFName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pendingDocSection')->textInput(['maxlength' => true]) ?>
-
+	<?= $form->field($model, 'pendingDocSection')->dropDownList(
+        ArrayHelper::map(\common\models\Section::find()->all(),'id', 'sectionName'),
+        ['prompt'=>'Section']
+    ) ?>
+	
     <?= $form->field($model, 'pendingDocName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'pendingDocTimeRelease')->textInput() ?>
