@@ -92,6 +92,8 @@ class PriorityController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+		
+		$model->priorityUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
