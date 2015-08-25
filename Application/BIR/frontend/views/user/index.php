@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'section_id',
             'userLName',
             'userFName',
-            // 'userLName',
+            // 'userMName',
             // 'username',
             // 'password_hash',
             // 'auth_key',
