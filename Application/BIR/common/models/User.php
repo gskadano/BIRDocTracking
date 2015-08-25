@@ -6,6 +6,8 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use common\models\Position;
+use common\models\Section;
 
 /**
  * User model
@@ -185,4 +187,23 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+	
+	//===================================================================================
+	
+	public function getFullname()
+	{
+		return $this->userLName . ', ' . $this->userFName;
+	}
+	
+	public function getPosition()
+    {
+        return $this->hasOne(Position::className(), ['id' => 'position_id']);
+    }
+
+    public function getSection()
+    {
+        return $this->hasOne(Section::className(), ['id' => 'section_id']);
+    }
+	
+	//===================================================================================
 }
