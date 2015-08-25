@@ -13,8 +13,12 @@ use yii\helpers\ArrayHelper;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'document_id')->textInput() ?>
-
-    <?= $form->field($model, 'user_receive')->textInput() ?>
+	
+	
+	<?= $form->field($model, 'user_receive')->dropDownList(
+        ArrayHelper::map(\common\models\User::find()->all(),'id', 'FPname'),
+        ['prompt'=>'Receiver']
+    ) ?>
 
 	<?= $form->field($model, 'docStatus_id')->dropDownList(
        ArrayHelper::map(\common\models\Docstatus::find()->all(),'id', 'docStatusName'),
@@ -29,8 +33,11 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'totalTimeSpent')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'user_release')->textInput() ?>
-
+	<?= $form->field($model, 'user_release')->dropDownList(
+        ArrayHelper::map(\common\models\User::find()->all(),'id', 'FPname'),
+        ['prompt'=>'Reciepient']
+    ) ?>
+    
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
