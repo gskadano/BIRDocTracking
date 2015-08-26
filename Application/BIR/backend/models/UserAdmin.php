@@ -123,9 +123,17 @@ class UserAdmin extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(Section::className(), ['id' => 'section_id']);
     }
 	//===================================================================================
-	public function getFullname(){
+	
+	public function getFullname()
+	{
 		return $this->userLName . ', ' . $this->userFName;
 	}
+	
+	public function getFPname()
+	{
+		return $this->userLName . ', ' . $this->userFName  . '; ' . $this->position->positionName;
+	}
+	
 	//===================================================================================
 
     /**

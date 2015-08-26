@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'document_id')->textInput() ?>
 	
 	<?= $form->field($model, 'user_receive')->dropDownList(
-        ArrayHelper::map(\common\models\User::find()->all(),'id', 'FPname'),
+        ArrayHelper::map(\backend\models\UserAdmin::find()->all(),'id', 'FPname'),
         ['prompt'=>'Receiver']
     ) ?>
 
@@ -32,7 +32,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'totalTimeSpent')->textInput(['maxlength' => true]) ?>
 
 	<?= $form->field($model, 'user_release')->dropDownList(
-        ArrayHelper::map(\common\models\User::find()->all(),'id', 'FPname'),
+        ArrayHelper::map(\backend\models\UserAdmin::find()->all(),'id', 'FPname'),
         ['prompt'=>'Reciepient']
     ) ?>
 	
