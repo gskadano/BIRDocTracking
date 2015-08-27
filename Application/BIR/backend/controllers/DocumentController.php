@@ -14,6 +14,7 @@ use yii\helpers\ArrayHelper;
 use common\models\Pendingdoc;
 use common\models\Section;
 
+use yii\web\UploadedFile;
 /**
  * DocumentController implements the CRUD actions for Document model.
  */
@@ -74,7 +75,7 @@ class DocumentController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    /*public function actionCreate()
     {
         $model = new Document();
 
@@ -93,6 +94,46 @@ class DocumentController extends Controller
                 'model' => $model,
             ]);
         }
+    }*/
+	
+	public function actionCreate()
+    {
+       $model = new Document();
+       
+	   if ($model->load(Yii::$app->request->post())) 
+	   {
+	        //$model->file = UploadedFile::getInstance($model, 'documentImage');
+			$model->file = UploadedFile::getInstance($model, 'file');
+            $save_file='';
+			
+			
+            if($model->file)
+	        {
+               $imagepath = 'uploads/images/'; // Create folder under web/uploads/logo
+               $model->documentImage = $imagepath .rand(10,100).'-'.$model->file->name;
+               $save_file=1;
+			}
+	   
+	        if ($model->save()) 
+	        {
+			   //if ($model->documentImage)
+			   //{
+			     //  $model->file->saveAs($model->documentImage);
+			   //}
+			
+			   if($save_file)
+			   {
+                 $model->file->saveAs($model->documentImage);
+               }
+			
+			return $this->redirect(['view', 'id' => $model->id]);
+            } 
+	   }
+	   
+	   else 
+	   {
+            return $this->renderAjax('create', ['model' => $model]);
+       }
     }
 
     /**
@@ -101,7 +142,7 @@ class DocumentController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    /*public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 		$model->documentUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
@@ -116,6 +157,61 @@ class DocumentController extends Controller
                 'model' => $model,
             ]);
         }
+    }*/
+	public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+		$model->documentUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
+        
+		if ($model->load(Yii::$app->request->post())) 
+		{
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $save_file='';
+			
+			if($model->file)
+		    {
+               $imagepath = 'uploads/images/';
+               $model->documentImage = $imagepath .rand(10,100).'-'.$model->file->name;
+               $save_file = 1;
+            }
+	
+	     	if ($model->save())
+		    {
+        
+		       if($save_file)
+		       {
+                  $model->file->saveAs($model->documentImage);
+                  //return $this->redirect(['view', 'id' => $model->id]);
+			   }
+        
+	     	return $this->redirect(['view', 'id' => $model->id]);
+            } 
+     
+	    }
+		
+		else 
+		{
+            return $this->render('update', ['model' => $model]);
+        }
+    }
+	
+	public function actionDeleteimg($id, $field)
+    {
+        
+        $img = $this->findModel($id)->$field;
+        if($img)
+		{
+            if (!unlink($img)) 
+			{
+            return false;
+            }
+        }
+    
+        $img = $this->findModel($id);
+        $img->$field = NULL;
+        $img->update();
+    
+        return $this->redirect(['update', 'id' => $id]);
     }
 	
 	public function actionRelease($id)
