@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "document".
@@ -31,16 +32,19 @@ use Yii;
  * @property Section $section
  * @property Docworkflow[] $docworkflows
  */
-class Document extends \yii\db\ActiveRecord
+class Document extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
-    public static function tableName()
+	 
+	public $file;
+    
+	public static function tableName()
     {
         return 'document';
     }
-
+	
     /**
      * @inheritdoc
      */
@@ -50,8 +54,14 @@ class Document extends \yii\db\ActiveRecord
             [['documentTargetDate', 'documentCreate', 'documentUpdate'], 'safe'],
             [['category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'required'],
             [['category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'integer'],
-            [['documentImage'], 'string'],
-            [['document_tracking_number'], 'string', 'max' => 45],
+    
+	[['documentImage'], 'safe'],
+	[['documentImage'], 'file', 'extensions'=>'jpg, gif, png'],
+	
+	//[['file'], 'safe'],
+	//[['file'], 'file', 'extensions'=>'jpg, gif, png'],
+
+		    [['document_tracking_number'], 'string', 'max' => 45],
             [['documentName'], 'string', 'max' => 100],
             [['documentDesc', 'documentComment'], 'string', 'max' => 255]
         ];
@@ -73,8 +83,11 @@ class Document extends \yii\db\ActiveRecord
             'priority_id' => 'Priority',
             'documentComment' => 'Comment',
             'user_id' => 'User',
-            'companyAgency_id' => 'Company Agency',            'documentImage' => 'Document Image',
-            'section_id' => 'Section',
+            'companyAgency_id' => 'Company Agency',            
+			
+			'documentImage' => 'Document Image',
+            
+			'section_id' => 'Section',
             'documentCreate' => 'Document Create',
             'documentUpdate' => 'Document Update',
         ];
