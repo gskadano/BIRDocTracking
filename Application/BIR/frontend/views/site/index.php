@@ -2,7 +2,6 @@
 /* @var $this yii\web\View */
 $this->title = 'BIR - Document Workflow Tracking System';
 ?>
-
 <!--<div class="site-index">
 
     <div class="jumbotron">

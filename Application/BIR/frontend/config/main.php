@@ -29,6 +29,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+		'urlManagerBackend' => [
+			'class' => 'yii\web\urlManager',
+			'enablePrettyUrl' => true,
+			'showScriptName' => false,
+			'baseUrl' => 'http://localhost/birproj/backend/web/index.php',
+		],
     ],
     'params' => $params,
 ];
