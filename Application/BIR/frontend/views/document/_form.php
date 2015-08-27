@@ -63,7 +63,7 @@ use yii\helpers\ArrayHelper;
 	
 	<?= $form->field($model, 'user_id')->dropDownList(
         ArrayHelper::map(\common\models\User::find()->where('username = :user', [':user' => Yii::$app->user->identity->username])->all(),'id', 'username'),
-        ['prompt'=>'User']
+       ['prompt'=>'User']
     ) ?>
 
     <?= $form->field($model, 'companyAgency_id')->dropDownList(
