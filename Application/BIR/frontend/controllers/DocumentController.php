@@ -76,7 +76,8 @@ class DocumentController extends Controller
        
 	   if ($model->load(Yii::$app->request->post())) 
 	   {
-	        $model->file = UploadedFile::getInstance($model, 'documentImage');
+	        //$model->file = UploadedFile::getInstance($model, 'documentImage');
+			$model->file = UploadedFile::getInstance($model, 'file');
             $save_file='';
 			
 			
