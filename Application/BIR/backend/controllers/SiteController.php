@@ -95,7 +95,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        if(Yii::$app->user->identity->position_id <> 2){
+        if(Yii::$app->user->identity->position_id <> 2 || Yii::$app->user->identity->position_id == 8){
 			 return $this->redirect(Yii::$app->urlManagerFrontend->createUrl('pendingdoc'));
 		}else{
 			//return $this->render('index');
