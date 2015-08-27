@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'documentComment',
             // 'user_id',
             // 'companyAgency_id',
-            // 'documentImage',
+            'documentImage',
             // 'section_id',
             // 'documentCreate',
             // 'documentUpdate',

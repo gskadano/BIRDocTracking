@@ -49,7 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			['label' => 'Company Agency',
 			'value' => $model->companyAgency->companyAgencyName,
 			],
-            'documentImage',
+            
+			//'documentImage',
+			
+			
+			['value' =>Html::a(str_replace('web/uploads/', "", $model->documentImage),''.$model->documentImage), 'attribute' => 'documentImage', 'format' => 'raw'],
 			['label' => 'Section',
 			'value' => $model->section->sectionName,
 			],

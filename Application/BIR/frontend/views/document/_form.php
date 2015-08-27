@@ -11,7 +11,7 @@ use yii\helpers\ArrayHelper;
 
 <div class="document-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'document_tracking_number')->textInput(['maxlength' => true]) ?>
 
@@ -33,7 +33,18 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentImage')->textInput() ?>
+	<?= $form->field($model, 'file')->fileInput() ?>
+    
+	<?php
+    
+    if ($model->documentImage)
+	{
+             echo '<img src="'.\Yii::$app->request->BaseUrl.'/'.$model->documentImage.'" width="90px">&nbsp;&nbsp;&nbsp;';
+             //echo Html::a('Delete Logo', ['uploads/', 'id'=>$model->id, 'field'=> 'documentImage'], ['class'=>'btn btn-danger']).'<p>';
+    }
+    
+	?>
+	
 	
 	<?= $form->field($model, 'category_id')->dropDownList(
         ArrayHelper::map(\common\models\Category::find()->all(),'id', 'categoryName'),
