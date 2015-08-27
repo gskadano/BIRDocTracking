@@ -62,7 +62,7 @@ use yii\helpers\ArrayHelper;
     ) ?>
 	
 	<?= $form->field($model, 'user_id')->dropDownList(
-        ArrayHelper::map(\common\models\User::find()->all(),'id', 'username'),
+        ArrayHelper::map(\backend\models\UserAdmin::find()->all(),'id', 'FPname'),
         ['prompt'=>'User']
     ) ?>
 

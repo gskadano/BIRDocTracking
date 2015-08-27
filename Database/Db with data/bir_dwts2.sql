@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2015 at 03:47 AM
+-- Generation Time: Aug 27, 2015 at 08:05 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -51,14 +51,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `categoryCreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `categoryUpdate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `categoryName`, `categoryDesc`, `categoryCreate`, `categoryUpdate`) VALUES
-(1, 'qwe', 'qwe', '2015-08-11 14:48:58', '0000-00-00 00:00:00');
+(1, 'Category Sample 3', 'Category Sample 3', '2015-08-11 14:48:58', '0000-00-00 00:00:00'),
+(2, 'Category Sample 1', 'Category Sample 1', '2015-08-27 13:53:21', '0000-00-00 00:00:00'),
+(3, 'Category Sample 2', 'Category Sample 2', '2015-08-27 13:53:43', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -74,14 +76,15 @@ CREATE TABLE IF NOT EXISTS `companyagency` (
   `companyAgencyCreate` datetime DEFAULT CURRENT_TIMESTAMP,
   `companyAgencyUpdate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `companyagency`
 --
 
 INSERT INTO `companyagency` (`id`, `companyAgencyCode`, `companyAgencyName`, `companyAgencyDesc`, `companyAgencyCreate`, `companyAgencyUpdate`) VALUES
-(1, 'DOH', 'qw', 'qw', '2015-08-11 14:48:18', '2015-08-11 14:48:18');
+(1, 'DOH', 'Department of Health', 'Department of Health', '2015-08-11 14:48:18', '2015-08-11 14:48:18'),
+(2, 'BIR', 'Bureau of Internal Revenue', 'Bureau of Internal Revenue', '2015-08-27 14:03:54', '2015-08-27 14:03:54');
 
 -- --------------------------------------------------------
 
@@ -125,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `document` (
   KEY `fk_document_companyAgency1_idx` (`companyAgency_id`),
   KEY `fk_document_category1_idx` (`category_id`),
   KEY `fk_document_section1_idx` (`section_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `document`
@@ -137,15 +140,7 @@ INSERT INTO `document` (`id`, `document_tracking_number`, `documentName`, `docum
 (3, '20150826-02-0003', 'test1', 'test1', '2015-08-31', 1, 2, 3, 'test1', 66, 1, 'sm.PNG', 2, '2015-08-26 23:47:26', NULL),
 (4, '20150826-06-0004', 'sass', 'sasa', '2015-08-31', 1, 2, 3, 'sassa', 70, 1, 'bdo.png', 6, '2015-08-26 23:54:11', NULL),
 (5, '20150826-06-0005', 'sasa', 'sasa', '2015-08-29', 1, 1, 1, 'sasas', 81, 1, 'uploads/images/10-bdo.png', 6, '2015-08-26 23:58:19', '2015-08-27 02:50:43'),
-(6, '20150827-04-0006', 'dadad', 'dadad', '2015-08-28', 1, 2, 3, 'dada', 70, 1, NULL, 4, '2015-08-27 01:43:14', NULL),
-(7, '20150827-04-0007', 'dadad', 'dadad', '2015-08-28', 1, 2, 3, 'dada', 70, 1, NULL, 4, '2015-08-27 01:45:36', NULL),
-(8, '20150827-04-0008', 'dadad', 'dadad', '2015-08-28', 1, 2, 3, 'dada', 70, 1, NULL, 4, '2015-08-27 01:47:11', NULL),
-(9, '20150827-05-0009', 'sasas', 'ass', '2015-08-29', 1, 1, 1, 'rewrwrw', 78, 1, NULL, 5, '2015-08-27 02:15:55', NULL),
-(10, '20150827-05-0010', 'sasas', 'ass', '2015-08-29', 1, 1, 1, 'rewrwrw', 78, 1, NULL, 5, '2015-08-27 02:20:13', NULL),
-(11, '20150827-05-0011', 'sasas', 'ass', '2015-08-29', 1, 1, 1, 'rewrwrw', 78, 1, NULL, 5, '2015-08-27 02:23:41', NULL),
-(12, '20150827-05-0012', 'sasas', 'ass', '2015-08-29', 1, 1, 1, 'rewrwrw', 78, 1, NULL, 5, '2015-08-27 02:24:48', NULL),
-(13, '20150827-05-0013', 'sasas', 'ass', '2015-08-29', 1, 1, 1, 'rewrwrw', 78, 1, NULL, 5, '2015-08-27 02:25:07', NULL),
-(14, '20150827-05-0014', 'sasas', 'ass', '2015-08-29', 1, 1, 1, 'rewrwrw', 78, 1, NULL, 5, '2015-08-27 02:34:18', NULL);
+(16, '20150827-06-0016', 'try1', 'try1', '2015-08-29', 1, 2, 3, 'try1', 72, 1, 'uploads/images/30-bsp.jpg', 6, '2015-08-27 10:29:06', '2015-08-27 10:38:35');
 
 --
 -- Triggers `document`
@@ -332,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `table_seq` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `timestamp` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `table_seq`
@@ -352,7 +347,9 @@ INSERT INTO `table_seq` (`id`, `timestamp`) VALUES
 (11, '2015-08-27'),
 (12, '2015-08-27'),
 (13, '2015-08-27'),
-(14, '2015-08-27');
+(14, '2015-08-27'),
+(15, '2015-08-27'),
+(16, '2015-08-27');
 
 -- --------------------------------------------------------
 
@@ -374,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `type` (
 --
 
 INSERT INTO `type` (`id`, `typeName`, `typeDesc`, `typeCreate`, `typeUpdate`) VALUES
-(1, 'qwe', 'qwe', '2015-08-11 14:49:31', NULL),
+(1, 'Type 1', 'Type 1', '2015-08-11 14:49:31', '2015-08-27 13:57:42'),
 (2, 'Type 2', 'Sample Type 2', '2015-08-25 12:29:24', '2015-08-25 12:32:18');
 
 -- --------------------------------------------------------
