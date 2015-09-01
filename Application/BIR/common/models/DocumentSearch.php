@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Document;
 use yii\helpers\ArrayHelper;
 use common\models\User;
+use common\models\Pendingdoc;
 
 /**
  * DocumentSearch represents the model behind the search form about `common\models\Document`.
@@ -45,8 +46,19 @@ class DocumentSearch extends Document
     {
         $query = Document::find();
 		
+		$userlname = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'userLName');
+		$userfname = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'userFName');
+		
+		$userfullname = $userlname . ', ' . $userfname;
+		
+		$docname = ArrayHelper::getValue(Pendingdoc::find()->where(['pendingDocFName' => $userfullname])->one(), 'pendingDocName');
+		
+		//$docname = Pendingdoc::find()->where(['pendingDocFName' => $userfullname])->one();
+		
+		//$docname = 1;
+		
 		$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
-		$query->where(['user_id' => $userid]);
+		$query->where(['or', ['documentName'=>$docname], ['user_id'=>$userid]]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -1,10 +1,15 @@
 <?php
-
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\bootstrap\Modal;
-use dosamigos\datepicker\DatePicker;
 use yii\helpers\Url;
+use dosamigos\datepicker\DatePicker;
+use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
+use yii\helpers\ArrayHelper;
+use common\models\User;
+
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
@@ -19,14 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 	
 	<p>
-        <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'showModalButton btn btn-success']) ?>
     </p>
 	
 	 <?php
         Modal::begin([
 			'header'=>'<h4>Document</h4>',
 			'id'=>'modal',
-			'size'=>'modal-lg',
+			//'size'=>'modal-lg',
 		]);
 
         echo "<div id='modalContent'></div>";
@@ -74,6 +79,23 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'section_id',
             // 'documentCreate',
             // 'documentUpdate',
+			
+			[
+					'attribute' => 'Actions',
+					'format' => 'raw',
+					'value' => function ($model) {
+					
+						$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+					
+						if ($model->user_id == $userid){
+				
+					return Html::button('Release', ['value'=>Url::to('index.php?r=document/release&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
+							}else{
+								return Html::button('Confirm', ['value'=>Url::to('index.php?r=document/confirm&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
+								//return Html::a('Confirm', ['confirm'], ['id' => $model->id],['class' => 'btn btn-success']);
+							}
+					},
+			],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -7,6 +7,8 @@ use dosamigos\datepicker\DatePicker;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
+use yii\helpers\ArrayHelper;
+use common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
@@ -23,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'showModalButton btn btn-success']) ?>
-
     </p>
 	
 	<?php
@@ -86,8 +87,17 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 					'attribute' => 'Actions',
 					'format' => 'raw',
-					'value' => function ($model) {                    
+					'value' => function ($model) {
+					
+						$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+					
+						if ($model->user_id == $userid){
+				
 					return Html::button('Release', ['value'=>Url::to('index.php?r=document/release&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
+							}else{
+								return Html::button('Confirm', ['value'=>Url::to('index.php?r=document/confirm&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
+								//return Html::a('Confirm', ['confirm'], ['id' => $model->id],['class' => 'btn btn-success']);
+							}
 					},
 			],
 			

@@ -60,11 +60,6 @@ use yii\helpers\ArrayHelper;
         ArrayHelper::map(\common\models\Priority::find()->all(),'id', 'priorityName'),
         ['prompt'=>'Priority']
     ) ?>
-	
-	<?= $form->field($model, 'user_id')->dropDownList(
-        ArrayHelper::map(\common\models\User::find()->all(),'id', 'username'),
-        ['prompt'=>'User']
-    ) ?>
 
     <?= $form->field($model, 'companyAgency_id')->dropDownList(
         ArrayHelper::map(\common\models\Companyagency::find()->all(),'id', 'companyAgencyName'),
