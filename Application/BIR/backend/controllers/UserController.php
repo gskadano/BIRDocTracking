@@ -69,7 +69,7 @@ class UserController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    /*public function actionCreate()
     {
         $model = new UserAdmin();
 		
@@ -91,6 +91,26 @@ class UserController extends Controller
                 'model' => $model,
             ]);
         }
+    }*/
+	
+	public function actionCreate()
+    {
+        //$model = new SignupForm();
+		$model = new UserAdmin();
+        if ($model->load(Yii::$app->request->post())) {
+			print_r('level1');
+            if ($user = $model->signup()) {
+				print_r('level1');
+                if (Yii::$app->getUser()) {
+                    //return $this->goHome();
+					return $this->redirect(['view', 'id' => $user->id]);
+                }
+            }
+        }
+		
+		return $this->render('create', [
+                'model' => $model,
+            ]);
     }
 	
     /**
