@@ -113,6 +113,10 @@ class DocumentController extends Controller
                $model->documentImage = $imagepath .rand(10,100).'-'.$model->file->name;
                $save_file=1;
 			}
+			
+			$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+			
+			$model->user_id = $userid;
 	   
 	        if ($model->save()) 
 	        {
@@ -135,6 +139,8 @@ class DocumentController extends Controller
             return $this->renderAjax('create', ['model' => $model]);
        }
     }
+	
+	
 
     /**
      * Updates an existing Document model.
@@ -214,6 +220,38 @@ class DocumentController extends Controller
         return $this->redirect(['update', 'id' => $id]);
     }
 	
+	public function actionConfirm($id){
+		
+		$model = $this->findModel($id);
+		
+		$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+		$sectionid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'section_id');
+		$userFName = ArrayHelper::getValue(User::find()->where(['id' => $userid])->one(), 'userFName');
+		$userLName = ArrayHelper::getValue(User::find()->where(['id' => $userid])->one(), 'userLName');
+		$section = ArrayHelper::getValue(Section::find()->where(['id' => $sectionid])->one(), 'sectionName');
+		$documentname = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'documentName');
+		
+		$model->user_id = $userid;
+		//$pendid = 2;
+		
+		$model->load(Yii::$app->request->post());
+		$model->save();
+		
+		$pendingid = ArrayHelper::getValue(Pendingdoc::find()->where(['and', ['pendingDocSection'=>$section], ['pendingDocName'=>$documentname], ['pendingDocFName'=>$userLName . ', ' . $userFName]])->one(), 'id');
+		
+		$this->findModelPending($pendingid)->delete();
+		
+		//Pendingdoc::find()->where(['and', ['pendingDocSection'=>$section], ['pendingDocName'=>$documentname], ['pendingDocFName'=>$userLName . ', ' . $userFName]])->one();
+		
+		//if(Pendingdoc()->pendingDocSection == $section && Pendingdoc()->pendingDocName == $documentname && Pendingdoc()->pendingDocFName == $userLName . ', ' . $userFName){
+			//Pendingdoc::findOne($pendid)->delete();
+			
+		//}
+		
+		return $this->redirect(['index']);
+		
+	}
+	
 	public function actionRelease($id)
 	{
 		$model = $this->findModel($id);
@@ -274,6 +312,15 @@ class DocumentController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
+	protected function findModelPending($id)
+	{
+		if (($model = Pendingdoc::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+	}
 	
 	/*
 	Public function actionloadImage($id)

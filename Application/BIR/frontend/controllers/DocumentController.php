@@ -5,12 +5,16 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Document;
 use common\models\DocumentSearch;
+use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-
+use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
+use common\models\Pendingdoc;
+use common\models\Section;
+
 
 /**
  * DocumentController implements the CRUD actions for Document model.
@@ -87,6 +91,10 @@ class DocumentController extends Controller
                $model->documentImage = $imagepath .rand(10,100).'-'.$model->file->name;
                $save_file=1;
 			}
+			
+			$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+			
+			$model->user_id = $userid;
 	   
 	        if ($model->save()) 
 	        {
@@ -153,6 +161,71 @@ class DocumentController extends Controller
             return $this->render('update', ['model' => $model]);
         }
     }
+	
+	public function actionConfirm($id){
+		
+		$model = $this->findModel($id);
+		
+		$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+		$sectionid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'section_id');
+		$userFName = ArrayHelper::getValue(User::find()->where(['id' => $userid])->one(), 'userFName');
+		$userLName = ArrayHelper::getValue(User::find()->where(['id' => $userid])->one(), 'userLName');
+		$section = ArrayHelper::getValue(Section::find()->where(['id' => $sectionid])->one(), 'sectionName');
+		$documentname = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'documentName');
+		
+		$model->user_id = $userid;
+		//$pendid = 2;
+		
+		$model->load(Yii::$app->request->post());
+		$model->save();
+		
+		$pendingid = ArrayHelper::getValue(Pendingdoc::find()->where(['and', ['pendingDocSection'=>$section], ['pendingDocName'=>$documentname], ['pendingDocFName'=>$userLName . ', ' . $userFName]])->one(), 'id');
+		
+		$this->findModelPending($pendingid)->delete();
+		
+		//Pendingdoc::find()->where(['and', ['pendingDocSection'=>$section], ['pendingDocName'=>$documentname], ['pendingDocFName'=>$userLName . ', ' . $userFName]])->one();
+		
+		//if(Pendingdoc()->pendingDocSection == $section && Pendingdoc()->pendingDocName == $documentname && Pendingdoc()->pendingDocFName == $userLName . ', ' . $userFName){
+			//Pendingdoc::findOne($pendid)->delete();
+			
+		//}
+		
+		return $this->redirect(['index']);
+		
+	}
+	
+	public function actionRelease($id)
+	{
+		$model = $this->findModel($id);
+		
+		
+		
+
+		
+		
+		if ($model->load(Yii::$app->request->post())) {
+		//$userid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'user_id');
+		$sectionid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'section_id');
+		$userFName = ArrayHelper::getValue(User::find()->where(['id' => $model->user_id])->one(), 'userFName');
+		$userLName = ArrayHelper::getValue(User::find()->where(['id' => $model->user_id])->one(), 'userLName');
+		$section = ArrayHelper::getValue(Section::find()->where(['id' => $sectionid])->one(), 'sectionName');
+		$documentname = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'documentName');
+			$pendingdoc = new Pendingdoc();
+			$pendingdoc->pendingDocFName = $userLName . ', ' . $userFName;
+			$pendingdoc->pendingDocSection = $section;
+			$pendingdoc->pendingDocName = $documentname;
+			
+			if($pendingdoc->save()){
+				return $this->redirect(['index']);
+			}
+		}
+			else {
+			return $this->renderAjax('release', [
+                'model' => $model,
+			]);
+			}
+	}
+	
     /**
      * Deletes an existing Document model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -199,4 +272,12 @@ class DocumentController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	protected function findModelPending($id)
+	{
+		if (($model = Pendingdoc::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+	}
 }
