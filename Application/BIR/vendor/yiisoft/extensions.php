@@ -93,4 +93,31 @@ return array (
       '@kartik/popover' => $vendorDir . '/kartik-v/yii2-popover-x',
     ),
   ),
+  'kartik-v/yii2-widget-depdrop' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-depdrop',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik/depdrop' => $vendorDir . '/kartik-v/yii2-widget-depdrop',
+    ),
+  ),
+  'nenad/yii2-widgets-base' => 
+  array (
+    'name' => 'nenad/yii2-widgets-base',
+    'version' => '2.0.0.0',
+    'alias' => 
+    array (
+      '@nenad' => $vendorDir . '/nenad/yii2-widgets-base',
+    ),
+  ),
+  'nenad/yii2-password-strength' => 
+  array (
+    'name' => 'nenad/yii2-password-strength',
+    'version' => '2.3.0.0',
+    'alias' => 
+    array (
+      '@nenad/passwordStrength' => $vendorDir . '/nenad/yii2-password-strength',
+    ),
+  ),
 );

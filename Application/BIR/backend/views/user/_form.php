@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 use kartik\select2\Select2; //===================
+use kartik\depdrop\DepDrop; //===================
+use nenad\passwordStrength\PasswordInput;
 /* @var $this yii\web\View */
 /* @var $model backend\models\UserAdmin */
 /* @var $form yii\widgets\ActiveForm */
@@ -32,6 +34,7 @@ use kartik\select2\Select2; //===================
 				'allowClear' => true
 			],
 		]);?>
+	
 	<?php //$form->field($model, 'section_id') 
 		echo $form->field($model, 'section_id')->widget(Select2::classname(), [
 			'data' => ArrayHelper::map(\common\models\Section::find()->all(), 'id', 'sectionName'),
@@ -49,9 +52,16 @@ use kartik\select2\Select2; //===================
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true])->widget(PasswordInput::classname(), []) ?>
 
-	<?= $form->field($model, 'status')->dropDownList(['10' => 'Active', '0' => 'Inactive']); ?>
+	<!--<?= $form->field($model, 'status')->dropDownList(['10' => 'Active', '0' => 'Inactive']); ?>-->
+	<?php echo $form->field($model, 'status')->widget(Select2::classname(), [
+			'data' => (['10' => 'Active', '0' => 'Inactive']),
+			'options' => ['placeholder' => 'Select a status'],
+			'pluginOptions' => [
+				'allowClear' => true
+			],
+		]);?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
