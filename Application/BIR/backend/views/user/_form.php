@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
+use kartik\select2\Select2; //===================
 /* @var $this yii\web\View */
 /* @var $model backend\models\UserAdmin */
 /* @var $form yii\widgets\ActiveForm */
@@ -13,15 +14,32 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 	
-	<?= $form->field($model, 'position_id')->dropDownList(
+	<!--<?= $form->field($model, 'position_id')->dropDownList(
         ArrayHelper::map(\common\models\Position::find()->all(),'id', 'positionName'),
         ['prompt'=>'Position']
-    ) ?>
+    ) ?>-->
 	
-	<?= $form->field($model, 'section_id')->dropDownList(
+	<!--<?= $form->field($model, 'section_id')->dropDownList(
        ArrayHelper::map(\common\models\Section::find()->all(),'id', 'sectionName'),
         ['prompt'=>'Section']
-    ) ?>
+    ) ?>-->
+	
+	<?php //$form->field($model, 'position_id') 
+		echo $form->field($model, 'position_id')->widget(Select2::classname(), [
+			'data' => ArrayHelper::map(\common\models\Position::find()->all(), 'id', 'positionName'),
+			'options' => ['placeholder' => 'Select a position'],
+			'pluginOptions' => [
+				'allowClear' => true
+			],
+		]);?>
+	<?php //$form->field($model, 'section_id') 
+		echo $form->field($model, 'section_id')->widget(Select2::classname(), [
+			'data' => ArrayHelper::map(\common\models\Section::find()->all(), 'id', 'sectionName'),
+			'options' => ['placeholder' => 'Select a section'],
+			'pluginOptions' => [
+				'allowClear' => true
+			],
+		]);?>
 	
 	<?= $form->field($model, 'userFName')->textInput(['maxlength' => true]) ?>
 
@@ -33,7 +51,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
 
-	<?= $form->field($model, 'status')->dropDownList(['0' => 'Inactive', '10' => 'Active']); ?>
+	<?= $form->field($model, 'status')->dropDownList(['10' => 'Active', '0' => 'Inactive']); ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 

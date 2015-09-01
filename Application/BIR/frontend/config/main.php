@@ -34,6 +34,7 @@ return [
 			'enablePrettyUrl' => true,
 			'showScriptName' => false,
 			'baseUrl' => 'http://localhost/birproj/backend/web/index.php',
+			//'baseurl' => 'http://localhost\..\birproj/backend/web/index.php',
 		],
     ],
     'params' => $params,

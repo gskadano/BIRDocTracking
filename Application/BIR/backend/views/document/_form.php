@@ -15,7 +15,7 @@ use common\models\User;
 
 <div class="document-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+   <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'document_tracking_number')->textInput(['maxlength' => true]) ?>
 
@@ -23,7 +23,7 @@ use common\models\User;
 
     <?= $form->field($model, 'documentDesc')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'documentTargetDate')->widget(
+    <?= $form->field($model, 'documentTargetDate')->widget(
          DatePicker::className(), [
         // inline too, not bad
         'inline' => false, 
@@ -33,12 +33,22 @@ use common\models\User;
             'autoclose' => true,
             'format' => 'yyyy-mm-dd'
         ]
-    ]);?>
-
+]);?>
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentImage')->fileInput() ?>
+	<?= $form->field($model, 'file')->fileInput() ?>
+    
+	<?php
+    
+    if ($model->documentImage)
+	{
+             echo '<img src="'.\Yii::$app->request->BaseUrl.'/'.$model->documentImage.'" width="90px">&nbsp;&nbsp;&nbsp;';
+             //echo Html::a('Delete Logo', ['uploads/', 'id'=>$model->id, 'field'=> 'documentImage'], ['class'=>'btn btn-danger']).'<p>';
+    }
+    
+	?>
+	
 	
 	<?= $form->field($model, 'category_id')->dropDownList(
         ArrayHelper::map(\common\models\Category::find()->all(),'id', 'categoryName'),
@@ -54,7 +64,7 @@ use common\models\User;
         ArrayHelper::map(\common\models\Priority::find()->all(),'id', 'priorityName'),
         ['prompt'=>'Priority']
     ) ?>
-
+	
     <?= $form->field($model, 'companyAgency_id')->dropDownList(
         ArrayHelper::map(\common\models\Companyagency::find()->all(),'id', 'companyAgencyName'),
         ['prompt'=>'Company Agency']

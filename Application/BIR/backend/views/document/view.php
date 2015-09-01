@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-          //  'id',
+            'id',
             'document_tracking_number',
             'documentName',
             'documentDesc',
@@ -49,21 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			['label' => 'Company Agency',
 			'value' => $model->companyAgency->companyAgencyName,
 			],
-            //'documentImage',
-			/*array(
-	                'name'=>'docPicture',
-	                'type'=>'raw',
-	                'value'=>html_entity_decode(CHtml::image(Yii::app()->controller->createUrl('church/loadImage', array('id'=>$model->id))
-	                                                                                ,'alt'
-	                                                                                ,array('width'=>300)
-	                                                                                )),
-	                ),*/
-			[
-				'attribute'=>'documentImage',
-				'value'=>\yii\helpers\Html::img('<img src =' .'uploads/' . $model->documentImage),
-				//'value'=>yii\helpers\Html::app()->controller->createUrl('backend\controllers\DocumentController\loadImage', array('id'=>$model->id)),
-				'format' => ['image',['width'=>'100','height'=>'100']],
-			],
+            
+			//'documentImage',
+			
+			
+			['value' =>Html::a(str_replace('web/uploads/', "", $model->documentImage),''.$model->documentImage), 'attribute' => 'documentImage', 'format' => 'raw'],
 			['label' => 'Section',
 			'value' => $model->section->sectionName,
 			],
