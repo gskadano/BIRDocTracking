@@ -249,6 +249,7 @@ class DocumentController extends Controller
 		//}
 		
 		return $this->redirect(['index']);
+		//return $this->refresh();
 		
 	}
 	

@@ -95,8 +95,9 @@ $this->params['breadcrumbs'][] = $this->title;
 				
 					return Html::button('Release', ['value'=>Url::to('index.php?r=document/release&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
 							}else{
-								return Html::button('Confirm', ['value'=>Url::to('index.php?r=document/confirm&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
-								//return Html::a('Confirm', ['confirm'], ['id' => $model->id],['class' => 'btn btn-success']);
+								//return Html::button('Confirm', ['value'=>Url::to('index.php?r=document/confirm&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
+								//return Html::button('Confirm', ['confirm'], ['id' => $model->id],['class' => 'btn btn-success']);
+								return Html::a(Yii::t('app', 'Confirm'), ['confirm', 'id' => $model->id], ['class' => 'btn btn-success']);
 							}
 					},
 			],
