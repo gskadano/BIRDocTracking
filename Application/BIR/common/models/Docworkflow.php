@@ -38,7 +38,7 @@ class Docworkflow extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['document_id', 'user_receive', 'docStatus_id', 'timeRelease', 'user_release'], 'required'],
+            [['document_id', 'user_receive', 'docStatus_id'/*, 'timeRelease', 'user_release'*/], 'required'],
             [['document_id', 'user_receive', 'docStatus_id', 'user_release'], 'integer'],
             [['timeAccepted', 'timeRelease'], 'safe'],
             [['docWorkflowComment'], 'string', 'max' => 255],

@@ -15,6 +15,7 @@ use yii\web\UploadedFile;
 use common\models\Pendingdoc;
 use common\models\Section;
 
+use common\models\Docworkflow;
 
 /**
  * DocumentController implements the CRUD actions for Document model.
@@ -176,8 +177,10 @@ class DocumentController extends Controller
 		$model->user_id = $userid;
 		//$pendid = 2;
 		
-		$model->load(Yii::$app->request->post());
+		/*
+		$model->load(Yii::$app->request->post());		
 		$model->save();
+		*/
 		
 		$pendingid = ArrayHelper::getValue(Pendingdoc::find()->where(['and', ['pendingDocSection'=>$section], ['pendingDocName'=>$documentname], ['pendingDocFName'=>$userLName . ', ' . $userFName]])->one(), 'id');
 		
@@ -189,8 +192,21 @@ class DocumentController extends Controller
 			//Pendingdoc::findOne($pendid)->delete();
 			
 		//}
-		
-		return $this->redirect(['index']);
+		$document = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'id');
+		if ($model->save()) {
+			$workflow = new Docworkflow();
+			
+			$workflow->document_id = $document;
+			$workflow->user_receive = $userid;
+			$workflow->docStatus_id = 1;
+			//$workflow->timeAccepted = date('Y-m-d H:i:s');
+			print_r('level1');
+			print_r($documentname); print_r($userid);
+			if($workflow->save()){
+				print_r('level2');
+				return $this->redirect(['index']);
+			}
+        }
 		
 	}
 	
