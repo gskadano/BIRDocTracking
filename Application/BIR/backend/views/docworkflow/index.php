@@ -58,7 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'timeAccepted',
             'timeRelease',
             'totalTimeSpent',
-            'user_release',
+            //'user_release',
+			[
+				'attribute' => 'user_release',
+				'value' => 'userRelease.Fullname',
+			],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
