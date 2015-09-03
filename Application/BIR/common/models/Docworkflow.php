@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+//use backend\models\UserAdmin;
 
 /**
  * This is the model class for table "docworkflow".
@@ -93,6 +94,6 @@ class Docworkflow extends \yii\db\ActiveRecord
      */
     public function getUserRelease()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_release']);
+		return $this->hasOne(User::className(), ['id' => 'user_release']);
     }
 }

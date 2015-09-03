@@ -46,6 +46,7 @@ class DocworkflowController extends Controller
     {
         $searchModel = new DocworkflowSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['id' => 'DESC']]; 
 
         return $this->render('index', [
             'searchModel' => $searchModel,

@@ -38,15 +38,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            'document_id',
-            'user_receive',
-            'docStatus_id',
+            'id',
+            //'document_id',
+			[
+				'attribute' => 'document_id',
+				'value' => 'document.documentName',
+			],
+            //'user_receive',
+			[
+				'attribute' => 'user_receive',
+				'value' => 'userReceive.Fullname',
+			],
+            //'docStatus_id',
+			[
+				'attribute' => 'docStatus_id',
+				'value' => 'docStatus.docStatusName',
+			],
             'docWorkflowComment',
-            // 'timeAccepted',
-            // 'timeRelease',
-            // 'totalTimeSpent',
-            // 'user_release',
+            'timeAccepted',
+            'timeRelease',
+            'totalTimeSpent',
+            'user_release',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -206,6 +206,7 @@ class DocumentController extends Controller
 				print_r('level2');
 				return $this->redirect(['index']);
 			}
+			
         }
 		
 	}
@@ -214,13 +215,11 @@ class DocumentController extends Controller
 	{
 		$model = $this->findModel($id);
 		
-		
-		
-
-		
+		$workflowid = ArrayHelper::getValue(Docworkflow::find()->where(['document_id' => $id])->orderBy(['id'=>SORT_DESC])->one(), 'id');
+		//print_r($workflowid . ' level0 ' . $model->user_id);
 		
 		if ($model->load(Yii::$app->request->post())) {
-		//$userid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'user_id');
+		//$userid1 = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
 		$sectionid = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'section_id');
 		$userFName = ArrayHelper::getValue(User::find()->where(['id' => $model->user_id])->one(), 'userFName');
 		$userLName = ArrayHelper::getValue(User::find()->where(['id' => $model->user_id])->one(), 'userLName');
@@ -231,8 +230,22 @@ class DocumentController extends Controller
 			$pendingdoc->pendingDocSection = $section;
 			$pendingdoc->pendingDocName = $documentname;
 			
-			if($pendingdoc->save()){
-				return $this->redirect(['index']);
+			
+			$workflow1 = new Docworkflow();			
+			$workflow1 = $this->findModelWorkflow($workflowid);
+			
+			//$workflow1->id = $workflowid;
+			$workflow1->timeRelease = date('Y-m-d H:i:s');
+			//$workflow1->totalTimeSpent = date('Y-m-d H:i:s');
+			$workflow1->user_release = $model->user_id;
+			print_r('level1');
+			if($workflow1->save()){
+				print_r('level2');
+				if($pendingdoc->save()){
+					print_r('level3');
+					return $this->redirect(['index']);
+					//return $this->redirect('index.php?r=pendingdoc');
+				}
 			}
 		}
 			else {
@@ -296,4 +309,13 @@ class DocumentController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 	}
+	protected function findModelWorkflow($workflowid)
+    {
+		
+        if (($workflow1 = Docworkflow::findOne($workflowid)) !== null) {
+            return $workflow1;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }

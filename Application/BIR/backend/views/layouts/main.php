@@ -53,6 +53,7 @@ AppAsset::register($this);
                     ['label' => 'Type', 'url' => ['/type']],
                     ['label' => 'Section', 'url' => ['/section']],
 					['label' => 'Position', 'url' => ['/position']],
+					['label' => 'Status', 'url' => ['/docstatus']],
                 ],
 
             ];
