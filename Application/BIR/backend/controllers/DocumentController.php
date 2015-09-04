@@ -287,21 +287,28 @@ class DocumentController extends Controller
 			$pendingdoc->pendingDocSection = $section;
 			$pendingdoc->pendingDocName = $documentname;
 			
-			
-			$workflow1 = new Docworkflow();			
-			$workflow1 = $this->findModelWorkflow($workflowid);
-			
-			//$workflow1->id = $workflowid;
-			$workflow1->timeRelease = date('Y-m-d H:i:s');
-			//$workflow1->totalTimeSpent = date('Y-m-d H:i:s');
-			$workflow1->user_release = $model->user_id;
-			print_r('level1');
-			if($workflow1->save()){
-				print_r('level2');
+			if($workflowid == null){
 				if($pendingdoc->save()){
 					print_r('level3');
 					return $this->redirect(['index']);
 					//return $this->redirect('index.php?r=pendingdoc');
+				}
+			}else{
+				$workflow1 = new Docworkflow();			
+				$workflow1 = $this->findModelWorkflow($workflowid);
+				
+				//$workflow1->id = $workflowid;
+				$workflow1->timeRelease = date('Y-m-d H:i:s');
+				//$workflow1->totalTimeSpent = date('Y-m-d H:i:s');
+				$workflow1->user_release = $model->user_id;
+				print_r('level1');
+				if($workflow1->save()){
+					print_r('level2');
+					if($pendingdoc->save()){
+						print_r('level3');
+						return $this->redirect(['index']);
+						//return $this->redirect('index.php?r=pendingdoc');
+					}
 				}
 			}
 		}
@@ -356,7 +363,7 @@ class DocumentController extends Controller
         if (($workflow1 = Docworkflow::findOne($workflowid)) !== null) {
             return $workflow1;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page does not exist. Go back to previous page.');
         }
     }
 	
