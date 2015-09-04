@@ -74,7 +74,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'documentTargetDate',
             // 'category_id',
             // 'type_id',
-            // 'priority_id',
+            //'priority_id',
+			[
+                'attribute' => 'priority_id',
+                'value' => 'priority.priorityName',
+            ],
             // 'documentComment',
             // 'user_id',
             // 'companyAgency_id',
@@ -82,6 +86,9 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'section_id',
             // 'documentCreate',
             // 'documentUpdate',
+			[
+				
+			],
 
 			
 			[

@@ -71,14 +71,25 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             // 'category_id',
             // 'type_id',
-            // 'priority_id',
+            //'priority_id',
+			[
+                'attribute' => 'priority_id',
+                'value' => 'priority.priorityName',
+            ],
             // 'documentComment',
             // 'user_id',
             // 'companyAgency_id',
-            'documentImage',
+            // 'documentImage',
             // 'section_id',
             // 'documentCreate',
             // 'documentUpdate',
+			[
+					'attribute' => 'Duration',
+					'format' => 'raw',
+					'value' => function ($model) {
+						
+					},
+			],
 			
 			[
 					'attribute' => 'Actions',
