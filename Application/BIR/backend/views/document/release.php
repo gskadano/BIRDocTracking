@@ -16,14 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-lg-8">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                <!--<?= 
+               <!-- <?= 
 				$form->field($model, 'user_id')->dropDownList(
-					ArrayHelper::map(\common\models\User::find()->all(),'id', 'username'),
+					ArrayHelper::map(\common\models\User::find()->where('username != :username', ['username' => Yii::$app->user->identity->username])->all(),'id', 'username'),
 					['prompt'=>'User']
 				) ?>-->
 				
 				<?php echo $form->field($model, 'user_id')->widget(Select2::classname(), [
-						'data' => ArrayHelper::map(\backend\models\UserAdmin::find()->all(),'id', 'Fullname'),
+						'data' => ArrayHelper::map(\backend\models\UserAdmin::find()->where('username != :username', ['username' => Yii::$app->user->identity->username])->all(),'id', 'Fullname'),
 						'options' => ['placeholder' => 'Select a Receiver'],
 						'pluginOptions' => [
 							'allowClear' => true
