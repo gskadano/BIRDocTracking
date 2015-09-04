@@ -55,11 +55,11 @@ class Document extends ActiveRecord
             [['category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'required'],
             [['category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'integer'],
     
-	[['documentImage'], 'safe'],
-	[['documentImage'], 'file', 'extensions'=>'jpg, gif, png'],
-	
-	//[['file'], 'safe'],
-	//[['file'], 'file', 'extensions'=>'jpg, gif, png'],
+			[['documentImage'], 'safe'],
+			[['documentImage'], 'file', 'extensions'=>'jpg, gif, png'],
+			
+			//[['file'], 'safe'],
+			//[['file'], 'file', 'extensions'=>'jpg, gif, png'],
 
 		    [['document_tracking_number'], 'string', 'max' => 45],
             [['documentName'], 'string', 'max' => 100],
