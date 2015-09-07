@@ -54,6 +54,16 @@ AppAsset::register($this);
                     ['label' => 'Section', 'url' => ['/section']],
 					['label' => 'Position', 'url' => ['/position']],
 					['label' => 'Status', 'url' => ['/docstatus']],
+					['label' => 'Category', 'url' => ['/category']],
+                ],
+
+            ];
+			
+			$menuItems[]=['label' => "Govn't Agency",
+                'visible' => !Yii::$app->user->isGuest,
+                'items' => [
+                    ['label' => 'Company Agencies', 'url' => ['/companyagency']],
+                    ['label' => 'Contact Person', 'url' => ['/agencycperson']],
                 ],
 
             ];
