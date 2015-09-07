@@ -62,7 +62,7 @@ AppAsset::register($this);
 			$menuItems[]=['label' => "Govn't Agency",
                 'visible' => !Yii::$app->user->isGuest,
                 'items' => [
-                    ['label' => 'Company Agencies', 'url' => ['/companyagency']],
+                    ['label' => 'Government Agencies', 'url' => ['/companyagency']],
                     ['label' => 'Contact Person', 'url' => ['/agencycperson']],
                 ],
 
