@@ -46,6 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+		'rowOptions'=>function($model){
+			$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
+            if($model->user_id != $userid){
+                return ['class' => 'danger'];
+            }
+		},
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 			[
@@ -104,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							}else{
 								//return Html::button('Confirm', ['value'=>Url::to('index.php?r=document/confirm&id=' . $model->id),'class' => 'showModalButton btn btn-success']);
 								//return Html::a('Confirm', ['confirm'], ['id' => $model->id],['class' => 'btn btn-success']);
-								return Html::a(Yii::t('app', 'Confirm'), ['confirm', 'id' => $model->id], ['class' => 'btn btn-success']);
+								return Html::a(Yii::t('app', 'Confirm'), ['confirm', 'id' => $model->id], ['class' => 'btn btn-danger']);
 							}
 					},
 			],
