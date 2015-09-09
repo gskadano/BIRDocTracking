@@ -52,7 +52,7 @@ class Document extends ActiveRecord
     {
         return [
             [['documentTargetDate', 'documentCreate', 'documentUpdate'], 'safe'],
-            [['category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'required'],
+            [['documentName', 'category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'required'],
             [['category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'integer'],
     
 			[['documentImage'], 'safe'],
