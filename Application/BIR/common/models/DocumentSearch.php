@@ -60,7 +60,7 @@ class DocumentSearch extends Document
 		$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
 		//$query->where(['or', ['documentName'=>$docname], ['user_id'=>$userid]]);
 		//$query->where(['INNER JOIN', 'Pendingdoc', 'Pendingdoc.pendingDocName = documentName']);
-		$query->join('INNER JOIN', 'pendingdoc', 'pendingdoc.pendingDocName = Document.documentName OR Document.user_id = ' . $userid);
+		$query->join('LEFT JOIN', 'pendingdoc', 'document.documentName = pendingdoc.pendingDocName')->where(['or', ['pendingdoc.pendingDocFName' => $userfullname], ['user_id'=>$userid]]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
