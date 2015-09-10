@@ -16,9 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
+ <!--   <p>
         <?= Html::button('Create Document Workflow', ['value'=>Url::to('index.php?r=docworkflow%2Fcreate'),'class' => 'showModalButton btn btn-success']) ?>
-    </p>
+    </p>-->
 
 	<?php
         Modal::begin([
