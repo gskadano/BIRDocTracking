@@ -76,7 +76,7 @@ class DocumentSearch extends Document
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            //'id' => $this->id,
             'documentTargetDate' => $this->documentTargetDate,
             'category_id' => $this->category_id,
             'type_id' => $this->type_id,
@@ -93,6 +93,7 @@ class DocumentSearch extends Document
             ->andFilterWhere(['like', 'documentDesc', $this->documentDesc])
             ->andFilterWhere(['like', 'documentComment', $this->documentComment])
             ->andFilterWhere(['like', 'documentImage', $this->documentImage])
+			->andFilterWhere(['like', 'document.id', $this->id])
 			->andFilterWhere(['like', 'priority.priorityName', $this->priority_id]);
 
         return $dataProvider;

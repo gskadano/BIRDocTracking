@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 			[
             'attribute' => 'id',
-			'contentOptions'=>['style'=>'width: 20px;'],
+			'contentOptions'=>['style'=>'width: 100px;'],
 			],
             'document_tracking_number',
             'documentName',
