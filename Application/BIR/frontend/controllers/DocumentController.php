@@ -96,7 +96,7 @@ class DocumentController extends Controller
 			$userid = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'id');
 			
 			$model->user_id = $userid;
-	   
+			
 	        if ($model->save()) 
 	        {
 			   //if ($model->documentImage)

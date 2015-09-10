@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-8">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+            <?php //$form = ActiveForm::begin(['id' => 'login-form']);
+				$form = ActiveForm::begin();?>
                <!-- <?= 
 				$form->field($model, 'user_id')->dropDownList(
 					ArrayHelper::map(\common\models\User::find()->where('username != :username', ['username' => Yii::$app->user->identity->username])->all(),'id', 'username'),

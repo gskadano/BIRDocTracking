@@ -29,7 +29,7 @@ use yii\helpers\ArrayHelper;
             'autoclose' => true,
             'format' => 'yyyy-mm-dd'
         ]
-]);?>
+	]);?>
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 

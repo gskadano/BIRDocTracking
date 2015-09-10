@@ -87,7 +87,32 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'documentCreate',
             // 'documentUpdate',
 			[
-				
+				'attribute' => 'Duration',
+				'format' => 'raw',
+				'value' => function ($model) {
+					$position = Yii::$app->user->identity->position_id;
+					$today = date('Y-m-d H:i:s');
+					if($position == 21 || $position == 22 || $position == 23 || $position == 24 || $position == 25 || $position == 26){
+						if($model->priority->priorityName == 'Urgent'){
+							$now = date('Y-m-d H:i:s', strtotime("$today + 8 hours"));
+						}else if($model->priority->priorityName == 'High'){
+							$now = date('Y-m-d H:i:s', strtotime("$today + 24 hours"));
+						}else if($model->priority->priorityName == 'Medium'){
+							$now = date('Y-m-d H:i:s', strtotime("$today + 40 hours"));
+						}else if($model->priority->priorityName == 'Low'){
+							$now = date('Y-m-d H:i:s', strtotime("$today + 56 hours"));
+						}
+					}else{
+						$now = date('Y-m-d H:i:s', strtotime("$today + 4 hours"));
+					}
+					//$from = '2015-09-10 15:00:00';
+					$from = date('Y-m-d H:i:s');
+					//$to   = '2015-09-11 8:00:00';
+					$to = $now;
+					//$to = date('Y-m-d H:i:s');
+					return '<div>'.$model->some_func_name($from,$to);
+					//return '<div>'.$model->some_func_name($from,$to) . " /from: " . $from . " /now: " . $now . " / " . $model->priority->priorityName;
+				},
 			],
 
 			
