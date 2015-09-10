@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				) ?>-->
 				
 				<?php echo $form->field($model, 'user_id')->widget(Select2::classname(), [
-						'data' => ArrayHelper::map(\backend\models\UserAdmin::find()->all(),'id', 'Fullname'),
+							'data' => ArrayHelper::map(\backend\models\UserAdmin::find()->where('username != :username', ['username' => Yii::$app->user->identity->username])->all(),'id', 'Fullname'),
 						'options' => ['placeholder' => 'Select a Receiver'],
 						'pluginOptions' => [
 							'allowClear' => true
