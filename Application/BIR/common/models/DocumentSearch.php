@@ -21,8 +21,8 @@ class DocumentSearch extends Document
     public function rules()
     {
         return [
-            [['id', 'category_id', 'type_id', 'priority_id', 'user_id', 'companyAgency_id', 'section_id'], 'integer'],
-            [['document_tracking_number', 'documentName', 'documentDesc', 'documentTargetDate', 'documentComment', 'documentImage', 'documentCreate', 'documentUpdate'], 'safe'],
+            [['id', 'category_id', 'type_id', 'user_id', 'companyAgency_id', 'section_id'], 'integer'],
+            [['document_tracking_number', 'documentName', 'priority_id', 'documentDesc', 'documentTargetDate', 'documentComment', 'documentImage', 'documentCreate', 'documentUpdate'], 'safe'],
         ];
     }
 
@@ -64,6 +64,8 @@ class DocumentSearch extends Document
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+		
+		$query->joinWith('priority');
 
         $this->load($params);
 
@@ -78,7 +80,7 @@ class DocumentSearch extends Document
             'documentTargetDate' => $this->documentTargetDate,
             'category_id' => $this->category_id,
             'type_id' => $this->type_id,
-            'priority_id' => $this->priority_id,
+            //'priority_id' => $this->priority_id,
             'user_id' => $this->user_id,
             'companyAgency_id' => $this->companyAgency_id,
             'section_id' => $this->section_id,
@@ -90,7 +92,8 @@ class DocumentSearch extends Document
             ->andFilterWhere(['like', 'documentName', $this->documentName])
             ->andFilterWhere(['like', 'documentDesc', $this->documentDesc])
             ->andFilterWhere(['like', 'documentComment', $this->documentComment])
-            ->andFilterWhere(['like', 'documentImage', $this->documentImage]);
+            ->andFilterWhere(['like', 'documentImage', $this->documentImage])
+			->andFilterWhere(['like', 'priority.priorityName', $this->priority_id]);
 
         return $dataProvider;
     }
