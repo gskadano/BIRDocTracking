@@ -18,8 +18,8 @@ class DocworkflowSearch extends Docworkflow
     public function rules()
     {
         return [
-            [['id', 'document_id', 'user_receive', 'docStatus_id', 'user_release'], 'integer'],
-            [['docWorkflowComment', 'timeAccepted', 'timeRelease', 'totalTimeSpent'], 'safe'],
+            [['id', ], 'integer'],
+            [['docWorkflowComment', 'docStatus_id', 'user_release', 'user_receive', 'document_id', 'timeAccepted', 'timeRelease', 'totalTimeSpent'], 'safe'],
         ];
     }
 
@@ -47,6 +47,18 @@ class DocworkflowSearch extends Docworkflow
             'query' => $query,
         ]);
 
+		$query->joinWith('document')->joinWith([
+    'userReceive' => function ($q) {
+        $q->from('user receive');
+    },
+])->joinWith('docStatus')->joinWith([
+    'userRelease' => function ($q) {
+        $q->from('user release');
+    },
+]);
+
+		//$query->joinWith('document')->joinWith('userRelease')->joinWith('userReceive');
+		
         $this->load($params);
 
         if (!$this->validate()) {
@@ -56,17 +68,22 @@ class DocworkflowSearch extends Docworkflow
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'document_id' => $this->document_id,
-            'user_receive' => $this->user_receive,
-            'docStatus_id' => $this->docStatus_id,
+            //'id' => $this->id,
+            //'document_id' => $this->document_id,
+            //'user_receive' => $this->user_receive,
+            //'docStatus_id' => $this->docStatus_id,
             'timeAccepted' => $this->timeAccepted,
             'timeRelease' => $this->timeRelease,
-            'user_release' => $this->user_release,
+            //'user_release' => $this->user_release,
         ]);
 
         $query->andFilterWhere(['like', 'docWorkflowComment', $this->docWorkflowComment])
-            ->andFilterWhere(['like', 'totalTimeSpent', $this->totalTimeSpent]);
+            ->andFilterWhere(['like', 'totalTimeSpent', $this->totalTimeSpent])
+			->andFilterWhere(['like', 'document.documentName', $this->document_id])
+			->andFilterWhere(['like', 'receive.userLName', $this->user_receive])
+			->andFilterWhere(['like', 'docstatus.docStatusName', $this->docStatus_id])
+			->andFilterWhere(['like', 'docworkflow.id', $this->id])
+			->andFilterWhere(['like', 'release.userLName', $this->user_release]);
 
         return $dataProvider;
     }
