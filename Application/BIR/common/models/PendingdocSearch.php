@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Pendingdoc;
+use yii\helpers\ArrayHelper;
 
 /**
  * PendingdocSearch represents the model behind the search form about `common\models\Pendingdoc`.
@@ -42,6 +43,13 @@ class PendingdocSearch extends Pendingdoc
     public function search($params)
     {
         $query = Pendingdoc::find();
+		
+		$userlname = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'userLName');
+		$userfname = ArrayHelper::getValue(User::find()->where(['username' => Yii::$app->user->identity->username])->one(), 'userFName');
+		
+		$userfullname = $userlname . ', ' . $userfname;
+		
+		$query->where(['pendingDocFName' => $userfullname])->one();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
