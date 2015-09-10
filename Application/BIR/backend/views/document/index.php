@@ -10,6 +10,8 @@ use yii\bootstrap\Modal;
 use yii\helpers\ArrayHelper;
 use common\models\User;
 
+use common\models\Document;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -91,16 +93,24 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'raw',
 				'value' => function ($model) {
 					$position = Yii::$app->user->identity->position_id;
-					$today = date('Y-m-d H:i:s');
+					//$today = date('Y-m-d H:i:s');
+					$today = null;
+					//$today = ArrayHelper::getValue(Docworkflow::find()->where(['document_id' => $model->id])->orderBy(['id'=>SORT_DESC])->one(), 'timeAccepted');
+					$today = ArrayHelper::getValue(Document::find()->where(['id' => $model->id])->one(), 'documentUpdate');
+					
+					if($today == null){
+						$today = ArrayHelper::getValue(Document::find()->where(['id' => $model->id])->one(), 'documentCreate');
+					}
+					
 					if($position == 21 || $position == 22 || $position == 23 || $position == 24 || $position == 25 || $position == 26){
 						if($model->priority->priorityName == 'Urgent'){
 							$now = date('Y-m-d H:i:s', strtotime("$today + 8 hours"));
 						}else if($model->priority->priorityName == 'High'){
-							$now = date('Y-m-d H:i:s', strtotime("$today + 24 hours"));
+							$now = date('Y-m-d H:i:s', strtotime("$today + 3 days"));
 						}else if($model->priority->priorityName == 'Medium'){
-							$now = date('Y-m-d H:i:s', strtotime("$today + 40 hours"));
+							$now = date('Y-m-d H:i:s', strtotime("$today + 5 days"));
 						}else if($model->priority->priorityName == 'Low'){
-							$now = date('Y-m-d H:i:s', strtotime("$today + 56 hours"));
+							$now = date('Y-m-d H:i:s', strtotime("$today + 7 days"));
 						}
 					}else{
 						$now = date('Y-m-d H:i:s', strtotime("$today + 4 hours"));
@@ -110,8 +120,8 @@ $this->params['breadcrumbs'][] = $this->title;
 					//$to   = '2015-09-11 8:00:00';
 					$to = $now;
 					//$to = date('Y-m-d H:i:s');
-					return '<div>'.$model->some_func_name($from,$to);
-					//return '<div>'.$model->some_func_name($from,$to) . " /from: " . $from . " /now: " . $now . " / " . $model->priority->priorityName;
+					//return '<div>'.$model->some_func_name($from,$to);
+					return '<div>'.$model->some_func_name($from,$to) . " /now: " . $from . " /end: " . $now . " / " . $model->priority->priorityName . " /time accepted: " . $today;
 				},
 			],
 

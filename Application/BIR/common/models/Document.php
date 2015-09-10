@@ -186,7 +186,8 @@ class Document extends ActiveRecord
 			}
 		}
 
-		if (!$sum) return 'ccc, no time on job?';
+		//if (!$sum) return 'ccc, no time on job?';
+		if (!$sum) return 'Document overtime! Release to next employee...';
 
 		$spec = "P{$sum['y']}Y{$sum['m']}M{$sum['d']}DT{$sum['h']}H{$sum['i']}M{$sum['s']}S";
 		$interval = new \DateInterval($spec);

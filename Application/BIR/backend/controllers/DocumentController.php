@@ -168,7 +168,8 @@ class DocumentController extends Controller
 	public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-		$model->documentUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
+		//$model->documentUpdate = date('Y-m-d H:i:s',strtotime("+6 hours"));
+		$model->documentUpdate = date('Y-m-d H:i:s');
         
 		if ($model->load(Yii::$app->request->post())) 
 		{
@@ -233,6 +234,7 @@ class DocumentController extends Controller
 		$documentname = ArrayHelper::getValue(Document::find()->where(['id' => $id])->one(), 'documentName');
 		
 		$model->user_id = $userid;
+		$model->documentUpdate = date('Y-m-d H:i:s');
 		//$pendid = 2;
 		
 		/*
