@@ -17,7 +17,7 @@ use common\models\User;
 
    <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'document_tracking_number')->textInput(['maxlength' => true]) ?>
+  <!--  <?= $form->field($model, 'document_tracking_number')->textInput(['maxlength' => true]) ?>-->
 
     <?= $form->field($model, 'documentName')->textInput(['maxlength' => true]) ?>
 
