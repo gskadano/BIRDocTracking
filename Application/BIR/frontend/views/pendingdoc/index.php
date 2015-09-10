@@ -15,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
+  <!--  <p>
         <?= Html::a('Create Pending Document', ['create'], ['class' => 'showModalButton btn btn-success']) ?>
-    </p>
+    </p>-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,7 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'pendingDocName',
             'pendingDocTimeRelease',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+			 'template'			 => '{view}',
+			],
         ],
     ]); ?>
 
