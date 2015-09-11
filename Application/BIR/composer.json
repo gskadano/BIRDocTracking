@@ -23,7 +23,10 @@
         "kartik-v/yii2-popover-x": "*",
         "kartik-v/yii2-widget-depdrop": "@dev",
         "nenad/yii2-password-strength": "^2.3",
-        "kartik-v/yii2-mpdf": "@dev"
+        "kartik-v/yii2-mpdf": "@dev",
+        "kartik-v/yii2-export": "@dev",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-krajee-base": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

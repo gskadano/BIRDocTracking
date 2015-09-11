@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -10,6 +11,7 @@ use yii\helpers\ArrayHelper;
 use common\models\User;
 
 use common\models\Document;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\DocumentSearch */
@@ -18,31 +20,29 @@ use common\models\Document;
 $this->title = 'Documents';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="document-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-	
-	<p>
+
+    <p>
         <?= Html::button('Create Document', ['value'=>Url::to('index.php?r=document%2Fcreate'),'class' => 'showModalButton btn btn-success']) ?>
     </p>
 	
-	 <?php
+	<?php
         Modal::begin([
-			'header'=>'<h4>Document</h4>',
-			'id'=>'modal',
-			//'size'=>'modal-lg',
-		]);
+                'header'=>'<h4>Documents</h4>',
+                'id'=>'modal',
+                //'size'=>'modal-sm',
+            ]);
 
         echo "<div id='modalContent'></div>";
 
         Modal::end()
+	
     ?>
-<!--
-    <p>
-    
-    </p>-->
-
+	
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -53,38 +53,39 @@ $this->params['breadcrumbs'][] = $this->title;
             }
 		},
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'document_tracking_number',
-            'documentName',
-            'documentDesc',
+			['class' => 'yii\grid\SerialColumn'],
+			'document_tracking_number',
+			'documentName',
+			'documentDesc',
 			[
-                'attribute' => 'documentTargetDate',
+				'attribute' => 'documentTargetDate',
 				'contentOptions'=>['style'=>'width: 165px;'],
-                'value' => 'documentTargetDate',
-                'format' => 'raw',
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'documentTargetDate', 
-                    'clientOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]),
-            ],
-            // 'category_id',
-            // 'type_id',
-            //'priority_id',
+				'value' => 'documentTargetDate',
+				'format' => 'raw',
+				'filter' => DatePicker::widget([
+					'model' => $searchModel,
+					'attribute' => 'documentTargetDate', 
+					'clientOptions' => [
+						'autoclose' => true,
+						'format' => 'yyyy-mm-dd'
+					]
+				]),
+			],
+			//'documentTargetDate',
+			// 'category_id',
+			// 'type_id',
+			//'priority_id',
 			[
-                'attribute' => 'priority_id',
-                'value' => 'priority.priorityName',
-            ],
-            // 'documentComment',
-            // 'user_id',
-            // 'companyAgency_id',
-            // 'documentImage',
-            // 'section_id',
-            // 'documentCreate',
-            // 'documentUpdate',
+				'attribute' => 'priority_id',
+				'value' => 'priority.priorityName',
+			],
+			// 'documentComment',
+			// 'user_id',
+			// 'companyAgency_id',
+			// 'documentImage',
+			// 'section_id',
+			// 'documentCreate',
+			// 'documentUpdate',
 			[
 				'attribute' => 'Duration',
 				'format' => 'raw',
@@ -121,6 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					return '<div>'.$model->some_func_name($from,$to) . " /now: " . $from . " /end: " . $now . " / " . $model->priority->priorityName . " /time accepted: " . $today;
 				},
 			],
+
 			
 			[
 					'attribute' => 'Actions',
@@ -139,9 +141,8 @@ $this->params['breadcrumbs'][] = $this->title;
 							}
 					},
 			],
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+			['class' => 'yii\grid\ActionColumn'],		
+		],
     ]); ?>
-
+	
 </div>

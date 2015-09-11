@@ -31,46 +31,54 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-           
-			$menuItems = [
-                ['label' => 'Employee', 'visible' => !Yii::$app->user->isGuest, 'url' => ['/user']],
-            ];
-			
-			$menuItems[]=['label' => 'Document',
-               'visible' => !Yii::$app->user->isGuest,
-                'items' => [
-                    ['label' => 'My Document', 'url' => ['/document']],
-                    ['label' => 'Document Workflow', 'url' => ['/docworkflow']],
-					['label' => 'Pending Document', 'url' => ['/pendingdoc']],
-                ],
-
-            ];
-			
-			$menuItems[]=['label' => 'Others',
-                'visible' => !Yii::$app->user->isGuest,
-                'items' => [
-                    ['label' => 'Priority', 'url' => ['/priority']],
-                    ['label' => 'Type', 'url' => ['/type']],
-                    ['label' => 'Section', 'url' => ['/section']],
-					['label' => 'Position', 'url' => ['/position']],
-					['label' => 'Status', 'url' => ['/docstatus']],
-					['label' => 'Category', 'url' => ['/category']],
-                ],
-
-            ];
-			
-			$menuItems[]=['label' => "Govn't Agency",
-                'visible' => !Yii::$app->user->isGuest,
-                'items' => [
-                    ['label' => 'Government Agencies', 'url' => ['/companyagency']],
-                    ['label' => 'Contact Person', 'url' => ['/agencycperson']],
-                ],
-
-            ];
 			
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
+				$roles = Yii::$app->user->identity->position_id;
+				if($roles == 2 || $roles == 8){
+					
+					$menuItems = [
+						['label' => 'Employee', 'visible' => !Yii::$app->user->isGuest, 'url' => ['/user']],
+					];
+					
+					$menuItems[]=['label' => 'Document',
+					   'visible' => !Yii::$app->user->isGuest,
+						'items' => [
+							['label' => 'My Document', 'url' => ['/document']],
+							['label' => 'Document Workflow', 'url' => ['/docworkflow']],
+							['label' => 'Pending Document', 'url' => ['/pendingdoc']],
+						],
+
+					];
+					
+					$menuItems[]=['label' => 'Others',
+						'visible' => !Yii::$app->user->isGuest,
+						'items' => [
+							['label' => 'Priority', 'url' => ['/priority']],
+							['label' => 'Type', 'url' => ['/type']],
+							['label' => 'Section', 'url' => ['/section']],
+							['label' => 'Position', 'url' => ['/position']],
+							['label' => 'Status', 'url' => ['/docstatus']],
+							['label' => 'Category', 'url' => ['/category']],
+						],
+
+					];
+					
+					$menuItems[]=['label' => "Govn't Agency",
+						'visible' => !Yii::$app->user->isGuest,
+						'items' => [
+							['label' => 'Government Agencies', 'url' => ['/companyagency']],
+							['label' => 'Contact Person', 'url' => ['/agencycperson']],
+						],
+
+					];
+				}else{
+					$menuItems = [
+					
+					];
+					//return Yii::$app->getResponse()->redirect('index.php?r=document');
+				}
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],

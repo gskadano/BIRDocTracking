@@ -45,7 +45,7 @@ if($role == 2){
             } else {
 				$roles = Yii::$app->user->identity->position_id;
 
-				if($roles == 2){
+				if($roles == 2 || $roles == 8){
 					
 					$menuItems = [
 						//['label' => 'Home', 'url' => ['/site/index']],
