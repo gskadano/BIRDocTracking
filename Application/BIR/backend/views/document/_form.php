@@ -23,7 +23,7 @@ use common\models\User;
 
     <?= $form->field($model, 'documentDesc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentTargetDate')->widget(
+    <!--<?= $form->field($model, 'documentTargetDate')->widget(
          DatePicker::className(), [
         // inline too, not bad
         'inline' => false, 
@@ -33,7 +33,7 @@ use common\models\User;
             'autoclose' => true,
             'format' => 'yyyy-mm-dd'
         ]
-]);?>
+]);?>-->
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Document */
 
-$this->title = $model->id;
+$this->title = $model->documentName;
 $this->params['breadcrumbs'][] = ['label' => 'Documents', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'document_tracking_number',
             'documentName',
             'documentDesc',
-            'documentTargetDate',
+            //'documentTargetDate',
 			['label' => 'Category',
 			'value' => $model->category->categoryName,
 			],

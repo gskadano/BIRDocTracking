@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'documentDesc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentTargetDate')->widget(
+    <!--<?= $form->field($model, 'documentTargetDate')->widget(
          DatePicker::className(), [
         // inline too, not bad
         'inline' => false, 
@@ -29,7 +29,7 @@ use yii\helpers\ArrayHelper;
             'autoclose' => true,
             'format' => 'yyyy-mm-dd'
         ]
-	]);?>
+	]);?>-->
 
     <?= $form->field($model, 'documentComment')->textInput(['maxlength' => true]) ?>
 

@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'user_id',
 				'value' => 'user.username',
 			],*/
-			[
+			/*[
                 'attribute' => 'documentTargetDate',
 				'contentOptions'=>['style'=>'width: 165px;'],
                 'value' => 'documentTargetDate',
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'yyyy-mm-dd'
                     ]
                 ]),
-            ],
+            ],*/
             //'documentTargetDate',
             // 'category_id',
             // 'type_id',
@@ -120,8 +120,8 @@ $this->params['breadcrumbs'][] = $this->title;
 					//$to   = '2015-09-11 8:00:00';
 					$to = $now;
 					//$to = date('Y-m-d H:i:s');
-					//return '<div>'.$model->some_func_name($from,$to);
-					return '<div>'.$model->some_func_name($from,$to) . " /now: " . $from . " /end: " . $now . " / " . $model->priority->priorityName . " /time accepted: " . $today;
+					return '<div>'.$model->some_func_name($from,$to);
+					//return '<div>'.$model->some_func_name($from,$to) . " /now: " . $from . " /end: " . $now . " / " . $model->priority->priorityName . " /time accepted: " . $today;
 				},
 			],
 

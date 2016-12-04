@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'document_tracking_number',
 			'documentName',
 			'documentDesc',
-			[
+			/*[
 				'attribute' => 'documentTargetDate',
 				'contentOptions'=>['style'=>'width: 165px;'],
 				'value' => 'documentTargetDate',
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						'format' => 'yyyy-mm-dd'
 					]
 				]),
-			],
+			],*/
 			//'documentTargetDate',
 			// 'category_id',
 			// 'type_id',
@@ -115,11 +115,13 @@ $this->params['breadcrumbs'][] = $this->title;
 					}
 					//$from = '2015-09-10 15:00:00';
 					$from = date('Y-m-d H:i:s');
-					//$to   = '2015-09-11 8:00:00';
+					//$to   = '2015-09	-11 8:00:00';
 					$to = $now;
+					//printf($from); echo nl2br("\n");
+					//printf($now);
 					//$to = date('Y-m-d H:i:s');
-					//return '<div>'.$model->some_func_name($from,$to);
-					return '<div>'.$model->some_func_name($from,$to) . " /now: " . $from . " /end: " . $now . " / " . $model->priority->priorityName . " /time accepted: " . $today;
+					return '<div>'.$model->some_func_name($from,$to);
+					//return '<div>'.$model->some_func_name($from,$to) . " /now: " . $from . " /end: " . $now . " / " . $model->priority->priorityName . " /time accepted: " . $today;
 				},
 			],
 
