@@ -1,4 +1,4 @@
 <?php
-   include('/frontend/web/index.php')
+   include('/Application/BIR/frontend/web/index.php')
 ?>
 
