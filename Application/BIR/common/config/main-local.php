@@ -3,9 +3,10 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=bir_dwts2',
-            'username' => 'root',
-            'password' => '',
+            //'dsn' => 'mysql:host=localhost;dbname=bir_dwts2',
+			'dsn' => 'mysql:host=localhost;dbname=bir_dwts2',
+            'username' => 'u617686679_admin',
+            'password' => 'qwerty',
             'charset' => 'utf8',
         ],
         'mailer' => [
