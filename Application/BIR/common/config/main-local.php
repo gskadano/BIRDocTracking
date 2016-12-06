@@ -4,7 +4,7 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             //'dsn' => 'mysql:host=localhost;dbname=bir_dwts2',
-			'dsn' => 'mysql:host=mysql.hostinger.in;dbname=bir_dwts2',
+			'dsn' => 'mysql:host=mysql.hostinger.in;dbname=u617686679_bir',
             //'username' => 'root',
             //'password' => '',
 			'username' => 'u617686679_admin',
