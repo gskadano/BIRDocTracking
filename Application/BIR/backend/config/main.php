@@ -29,13 +29,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-		
+		$Url = Url::base(),
 		'urlManagerFrontend' => [
 			'class' => 'yii\web\urlManager',
 			'enablePrettyUrl' => true,
 			'showScriptName' => false,
-			'baseUrl' => 'http://localhost/birproj/frontend/web/index.php',
+			//'baseUrl' => 'http://localhost/birproj/frontend/web/index.php',
 			//'baseUrl' => 'http://localhost\..\frontend/web/index.php',
+			'baseUrl' => $Url+'index.php',
 		],
     ],
     'params' => $params,
