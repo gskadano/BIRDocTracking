@@ -29,7 +29,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-		$Url = Url::base(),
+		
 		'urlManagerBackend' => [
 			'class' => 'yii\web\urlManager',
 			'enablePrettyUrl' => true,
