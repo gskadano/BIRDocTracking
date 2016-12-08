@@ -36,7 +36,7 @@ return [
 			'showScriptName' => false,
 			//'baseUrl' => 'http://localhost/birproj/frontend/web/index.php',
 			//'baseUrl' => 'http://localhost\..\frontend/web/index.php',
-			'baseUrl' => 'birdoctrackingsample.16mb.com',
+			'baseUrl' => 'birdoctrackingsample.16mb.com/Application/BIR/frontend/web/index.php',
 		],
     ],
     'params' => $params,
